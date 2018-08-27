@@ -102,8 +102,10 @@ public class MultiPlaybackCallback extends MediaSessionCompat.Callback {
             mCurrentPlaybackSavedState = new PlaybackSavedState();
         }
 
-        // Clear the buffering listener it requires the media to already be prepared
+        // Clear the listeners since they will be set when playback is requested
         mPlayer.setOnBufferingUpdateListener(null);
+        mPlayer.setOnPreparedListener(null);
+        mPlayer.setOnCompletionListener(null);
 
         // Set new active message
         mActiveMessagePartId = messagePartId;
@@ -170,8 +172,20 @@ public class MultiPlaybackCallback extends MediaSessionCompat.Callback {
 
     @Override
     public void onSeekTo(long pos) {
-        mPlayer.seekTo((int) pos);
-        updateCurrentPlaybackState(mCurrentPlaybackSavedState.mPlaybackState, ((int) pos));
+        switch (mCurrentPlaybackSavedState.mPlaybackState) {
+            case PlaybackStateCompat.STATE_PAUSED:
+            case PlaybackStateCompat.STATE_PLAYING:
+            case PlaybackStateCompat.STATE_STOPPED:
+                mPlayer.seekTo((int) pos);
+                updateCurrentPlaybackState(mCurrentPlaybackSavedState.mPlaybackState, ((int) pos));
+                break;
+            default:
+                if (Log.isLoggable(Log.INFO)) {
+                    Log.i("Player not in a correct state("
+                            + mCurrentPlaybackSavedState.mPlaybackState
+                            + ") to handle seeking. Ignoring seek request.");
+                }
+        }
     }
 
     private void stopProgressUpdating() {
