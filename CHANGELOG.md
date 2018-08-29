@@ -1,5 +1,10 @@
 # Android XDK
 
+##
+
+### Bug fixes
+  * Fixing crash when viewing a message list during a bulk deletion (AND-1457) 
+  
 ## 4.1.0-pre1
 
 ### Features

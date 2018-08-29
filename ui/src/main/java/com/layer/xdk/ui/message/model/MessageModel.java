@@ -220,7 +220,7 @@ public abstract class MessageModel extends BaseObservable {
     /**
      * Process the {@link MessagePart}s starting from the root message part of this sub-tree
      */
-    public final void processPartsFromTreeRoot() {
+    public void processPartsFromTreeRoot() {
         MessagePart rootMessagePart = MessagePartUtils.getMessagePartWithRoleRoot(getMessage());
         if (rootMessagePart == null) {
             mMimeTypeTree = createLegacyMimeTypeTree();
@@ -642,7 +642,7 @@ public abstract class MessageModel extends BaseObservable {
      * @return true if the {@link Message} from the currently authenticated user
      */
     @Bindable
-    public final boolean isMessageFromMe() {
+    public boolean isMessageFromMe() {
         if (mAuthenticatedUserId != null) {
             return mAuthenticatedUserId.equals(mSenderId);
         }

@@ -206,11 +206,12 @@ public class MessageModelDataSource extends PositionalDataSource<MessageModel> {
         updateMyNewestMessagePosition(models, loadResults.mOffset);
 
         mGroupingCalculator.calculateGrouping(models);
-        // Trim extras that were loaded for the grouping calc
-        if (loadResults.mExtraAtBeginning) {
+        // Trim extras that were loaded for the grouping calc. It's possible no models were created
+        // if no messages were returned in the query so ensure a model exists before removing it.
+        if (loadResults.mExtraAtBeginning && !models.isEmpty()) {
             models.remove(0);
         }
-        if (loadResults.mExtraAtEnd) {
+        if (loadResults.mExtraAtEnd && !models.isEmpty()) {
             models.remove(models.size() - 1);
         }
 
