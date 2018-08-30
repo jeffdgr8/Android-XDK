@@ -41,9 +41,9 @@ public class TitledMessageContainer extends MessageContainer {
         if (inflatedView instanceof IconProvider) {
             IconProvider iconProvider = (IconProvider) inflatedView;
             Drawable icon = iconProvider.getIconDrawable();
-            getBinding().xdkUiTitledMessageContainerTitle.setCompoundDrawables(icon, null, null, null);
+            getBinding().xdkUiTitledMessageContainerTitle.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
         } else {
-            getBinding().xdkUiTitledMessageContainerTitle.setCompoundDrawables(null, null, null, null);
+            getBinding().xdkUiTitledMessageContainerTitle.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
         }
 
         return inflatedView;
