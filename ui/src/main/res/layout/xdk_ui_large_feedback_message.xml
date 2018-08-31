@@ -36,18 +36,26 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <EditText
-                android:id="@+id/comment"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="@{viewModel.mEditable}"
-                android:gravity="top"
-                android:hint="@{viewModel.mMessageModel.getCommentHint()}"
-                android:inputType="textLongMessage|textMultiLine|textCapSentences"
-                android:maxLength="400"
-                android:minLines="3"
-                android:text="@{viewModel.mComment}"
-                android:visibility="@{(viewModel.mEditable || viewModel.mMessageModel.getComment() != null) ? View.VISIBLE : View.GONE}"/>
+                app:counterEnabled="@{viewModel.mEditable}"
+                app:counterMaxLength="400"
+                android:visibility="@{(viewModel.mEditable || viewModel.mMessageModel.getComment() != null) ? View.VISIBLE : View.GONE}">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.mEditable}"
+                    android:gravity="top"
+                    android:hint="@{viewModel.mMessageModel.getCommentHint()}"
+                    android:inputType="textLongMessage|textMultiLine|textCapSentences"
+                    android:maxLength="400"
+                    android:minLines="3"
+                    android:text="@{viewModel.mComment}"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         </ScrollView>
 

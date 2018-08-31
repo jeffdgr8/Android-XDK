@@ -47,7 +47,8 @@ dependencies {
     implementation 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
     implementation 'com.android.support.test.espresso:espresso-core:' + rootProject.ext.espressoVersion
     implementation 'com.android.support:multidex:' + rootProject.ext.multidexVersion
-    
+    implementation 'com.android.support:design:' + rootProject.ext.supportLibVersion
+
     androidTestImplementation project(':xdk-test-common')
     androidTestImplementation 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
     androidTestImplementation 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
