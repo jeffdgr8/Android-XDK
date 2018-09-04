@@ -5,6 +5,11 @@
 ### Bug fixes
   * Fixing crash when viewing a message list during a bulk deletion (AND-1457) 
   
+## 4.0.8
+
+### Features
+  * Updated Layer SDK to `4.0.8`
+  
 ## 4.1.0-pre1
 
 ### Features
