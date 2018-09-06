@@ -12,6 +12,7 @@ import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
 import com.layer.sdk.messaging.MessagePart;
 import com.layer.xdk.ui.R;
+import com.layer.xdk.ui.message.action.OpenUrlActionHandler;
 import com.layer.xdk.ui.message.choice.ChoiceMessageModel;
 import com.layer.xdk.ui.message.choice.ChoiceMetadata;
 import com.layer.xdk.ui.message.image.cache.ImageRequestParameters;
@@ -27,10 +28,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-public class ProductMessageModel extends MessageModel {
+public class ProductMessageModel extends MessageModel implements OpenUrlActionHandler.Actionable {
     public static final String MIME_TYPE = "application/vnd.layer.product+json";
     private static final String DEFAULT_ACTION_EVENT = "open-url";
-    private static final String DEFAULT_ACTION_DATA_KEY = "url";
 
     private List<ChoiceMessageModel> mOptions;
     private ProductMessageMetadata mMetadata;
@@ -113,16 +113,15 @@ public class ProductMessageModel extends MessageModel {
     @NonNull
     @Override
     public JsonObject getActionData() {
-        JsonObject data = super.getActionData();
-        if (data.size() == 0 && mMetadata != null) {
-            if (mMetadata.mAction != null) {
-                data = mMetadata.mAction.getData();
-            } else if (mMetadata.mUrl != null) {
-                data.addProperty(DEFAULT_ACTION_DATA_KEY, mMetadata.mUrl);
-            }
+        if (super.getActionData().size() > 0) {
+            return super.getActionData();
         }
 
-        return data;
+        if (mMetadata != null && mMetadata.mAction != null) {
+            return mMetadata.mAction.getData();
+        }
+
+        return new JsonObject();
     }
 
     @Nullable
@@ -234,5 +233,10 @@ public class ProductMessageModel extends MessageModel {
         }
 
         return !productTexts.isEmpty() ? TextUtils.join(", ", productTexts) : null;
+    }
+
+    @Override
+    public String getUrl() {
+        return mMetadata != null ? mMetadata.mUrl : null;
     }
 }

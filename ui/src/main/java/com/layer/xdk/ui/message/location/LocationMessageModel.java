@@ -134,28 +134,11 @@ public class LocationMessageModel extends MessageModel {
             return super.getActionData();
         }
 
-        JsonObject actionData;
-
-        if (mMetadata != null) {
-            if (mMetadata.mAction != null) {
-                actionData = mMetadata.mAction.getData();
-            } else {
-                actionData = new JsonObject();
-                if (mMetadata.mLongitude != null && mMetadata.mLatitude != null) {
-                    actionData.addProperty("latitude", mMetadata.mLatitude);
-                    actionData.addProperty("longitude", mMetadata.mLongitude);
-                } else if (mMetadata.getFormattedAddress() != null) {
-                    actionData.addProperty("address", mMetadata.getFormattedAddress());
-                }
-
-                if (mMetadata.mTitle != null) {
-                    actionData.addProperty("title", mMetadata.mTitle);
-                }
-            }
-        } else {
-            actionData = new JsonObject();
+        if (mMetadata != null && mMetadata.mAction != null) {
+            return mMetadata.mAction.getData();
         }
-        return actionData;
+
+        return new JsonObject();
     }
 
     @Override

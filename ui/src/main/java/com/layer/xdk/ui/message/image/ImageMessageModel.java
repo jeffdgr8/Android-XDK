@@ -3,6 +3,7 @@ package com.layer.xdk.ui.message.image;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Pair;
 
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
@@ -12,8 +13,8 @@ import com.layer.sdk.messaging.MessagePart;
 import com.layer.xdk.ui.R;
 import com.layer.xdk.ui.message.LegacyMimeTypes;
 import com.layer.xdk.ui.message.MessagePartUtils;
+import com.layer.xdk.ui.message.action.OpenUrlActionHandler;
 import com.layer.xdk.ui.message.image.cache.ImageRequestParameters;
-import com.layer.xdk.ui.message.model.Action;
 import com.layer.xdk.ui.message.model.MessageModel;
 import com.layer.xdk.ui.util.Log;
 
@@ -23,7 +24,7 @@ import org.json.JSONObject;
 import java.io.InputStreamReader;
 import java.util.Set;
 
-public class ImageMessageModel extends MessageModel {
+public class ImageMessageModel extends MessageModel implements OpenUrlActionHandler.Actionable {
     private static final String ROLE_SOURCE = "source";
     private static final String ROLE_PREVIEW = "preview";
     private static final int PLACEHOLDER = R.drawable.xdk_ui_image_message_model_placeholder;
@@ -145,39 +146,11 @@ public class ImageMessageModel extends MessageModel {
             return super.getActionData();
         }
 
-        if (mMetadata == null) {
-            return new JsonObject();
-        } else if (mMetadata.mAction != null) {
+        if (mMetadata != null && mMetadata.mAction != null) {
             return mMetadata.mAction.getData();
-        } else {
-            Action action = new Action(ACTION_EVENT_OPEN_URL);
-            String url = null;
-            int width, height;
-            if (mMetadata.mPreviewUrl != null) {
-                url = mMetadata.mPreviewUrl;
-                width = mMetadata.getPreviewWidth();
-                height = mMetadata.getPreviewHeight();
-            } else if (mMetadata.mSourceUrl != null) {
-                url = mMetadata.mSourceUrl;
-                width = mMetadata.getWidth();
-                height = mMetadata.getHeight();
-            } else {
-                if (mSourceRequestParameters != null && mSourceRequestParameters.getUri() != null) {
-                    url = mSourceRequestParameters.getUri().toString();
-                } else if (mPreviewRequestParameters != null && mPreviewRequestParameters.getUri() != null) {
-                    url = mPreviewRequestParameters.getUri().toString();
-                }
-                width = mMetadata.getWidth();
-                height = mMetadata.getHeight();
-            }
-
-            action.getData().addProperty("url", url);
-            action.getData().addProperty("mime-type", mMetadata.mMimeType);
-            action.getData().addProperty("width", width);
-            action.getData().addProperty("height", height);
-            action.getData().addProperty("orientation", mMetadata.mOrientation);
-            return action.getData();
         }
+
+        return new JsonObject();
     }
 
     @Nullable
@@ -186,6 +159,40 @@ public class ImageMessageModel extends MessageModel {
         String title = getTitle();
         return title != null ? title : getAppContext().getString(R.string.xdk_ui_image_message_preview_text);
     }
+
+    @Override
+    public String getUrl() {
+        String url = null;
+        if (mMetadata.mPreviewUrl != null) {
+            url = mMetadata.mPreviewUrl;
+        } else if (mMetadata.mSourceUrl != null) {
+            url = mMetadata.mSourceUrl;
+        } else {
+            if (mSourceRequestParameters != null && mSourceRequestParameters.getUri() != null) {
+                url = mSourceRequestParameters.getUri().toString();
+            } else if (mPreviewRequestParameters != null && mPreviewRequestParameters.getUri() != null) {
+                url = mPreviewRequestParameters.getUri().toString();
+            }
+        }
+        return url;
+    }
+
+    @NonNull
+    public Pair<Integer, Integer> getDimensionsForAction() {
+        if (mMetadata != null) {
+            int width, height;
+            if (mMetadata.mPreviewUrl != null) {
+                width = mMetadata.getPreviewWidth();
+                height = mMetadata.getPreviewHeight();
+            } else {
+                width = mMetadata.getWidth();
+                height = mMetadata.getHeight();
+            }
+            return new Pair<>(width, height);
+        }
+        return new Pair<>(0, 0);
+    }
+
 
     /*
      * Private methods

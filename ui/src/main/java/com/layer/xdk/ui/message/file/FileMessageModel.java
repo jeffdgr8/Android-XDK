@@ -3,6 +3,7 @@ package com.layer.xdk.ui.message.file;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.databinding.Bindable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.DrawableRes;
@@ -38,8 +39,6 @@ public class FileMessageModel extends MessageModel {
     private static final String ROLE_SOURCE = "source";
 
     private static final String ACTION_EVENT_OPEN_FILE = "open-file";
-    private static final String ACTION_DATA_URI = "uri";
-    private static final String ACTION_DATA_FILE_MIME_TYPE = "file_mime_type";
 
     private static final List<String> PDF_MIME_TYPES = Collections.singletonList("application/pdf");
     private static final List<String> AUDIO_MIME_TYPES = Arrays.asList("application/ogg", "audio/mpeg",
@@ -134,16 +133,20 @@ public class FileMessageModel extends MessageModel {
             return super.getActionData();
         }
 
-        JsonObject jsonObject = new JsonObject();
-        if (mMetadata == null) {
-            return jsonObject;
+        if (mMetadata != null && mMetadata.mAction != null) {
+            return mMetadata.mAction.getData();
         }
-        jsonObject.addProperty(ACTION_DATA_FILE_MIME_TYPE, mMetadata.mMimeType);
+
+        return new JsonObject();
+    }
+
+    @Nullable
+    public Uri getFileUri() {
         if (getHasSourceMessagePart()) {
             MessagePart sourcePart = MessagePartUtils.getMessagePartWithRole(getMessage(), ROLE_SOURCE);
 
             if (sourcePart == null || sourcePart.getDataStream() == null) {
-                return new JsonObject();
+                return null;
             }
 
             String filePath;
@@ -151,15 +154,19 @@ public class FileMessageModel extends MessageModel {
                 filePath = writeDataToFile(sourcePart.getDataStream());
             } catch (IOException e) {
                 // TODO : AND-1235 How should this error be exposed?
-                return new JsonObject();
+                return null;
             }
-
-            jsonObject.addProperty(ACTION_DATA_URI, filePath);
-        } else {
-            jsonObject.addProperty(ACTION_DATA_URI, mMetadata.mSourceUrl);
+            return Uri.parse(filePath);
+        } else if (mMetadata != null) {
+            return Uri.parse(mMetadata.mSourceUrl);
         }
 
-        return jsonObject;
+        return null;
+    }
+
+    @Nullable
+    public String getFileMimeType() {
+        return mMetadata == null ? null : mMetadata.mMimeType;
     }
 
     @Nullable

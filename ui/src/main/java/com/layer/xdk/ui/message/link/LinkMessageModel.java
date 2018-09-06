@@ -10,6 +10,7 @@ import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
 import com.layer.sdk.messaging.MessagePart;
 import com.layer.xdk.ui.R;
+import com.layer.xdk.ui.message.action.OpenUrlActionHandler;
 import com.layer.xdk.ui.message.image.cache.ImageRequestParameters;
 import com.layer.xdk.ui.message.model.MessageModel;
 import com.layer.xdk.ui.util.Log;
@@ -17,7 +18,7 @@ import com.layer.xdk.ui.util.Log;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class LinkMessageModel extends MessageModel {
+public class LinkMessageModel extends MessageModel implements OpenUrlActionHandler.Actionable {
 
     public static final String ROOT_MIME_TYPE = "application/vnd.layer.link+json";
     private static final String ACTION_OPEN_URL = "open-url";
@@ -96,19 +97,11 @@ public class LinkMessageModel extends MessageModel {
             return super.getActionData();
         }
 
-        JsonObject actionData;
-        if (mMetadata != null) {
-            if (mMetadata.mAction != null) {
-                actionData = mMetadata.mAction.getData();
-            } else {
-                actionData = new JsonObject();
-                actionData.addProperty("url", mMetadata.mUrl);
-            }
-        } else {
-            actionData = super.getActionData();
+        if (mMetadata != null && mMetadata.mAction != null) {
+            return mMetadata.mAction.getData();
         }
 
-        return actionData;
+        return new JsonObject();
     }
 
     @Override
@@ -132,6 +125,7 @@ public class LinkMessageModel extends MessageModel {
         return mMetadata != null ? mMetadata.mImageUrl : null;
     }
 
+    @Override
     public String getUrl() {
         return mMetadata != null ? mMetadata.mUrl : null;
     }

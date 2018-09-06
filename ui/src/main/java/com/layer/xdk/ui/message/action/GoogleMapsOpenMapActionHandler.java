@@ -7,20 +7,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.layer.sdk.LayerClient;
+import com.layer.xdk.ui.message.location.LocationMessageMetadata;
+import com.layer.xdk.ui.message.location.LocationMessageModel;
 import com.layer.xdk.ui.message.model.MessageModel;
+import com.layer.xdk.ui.util.Log;
 
 import java.util.Locale;
 
 public class GoogleMapsOpenMapActionHandler extends ActionHandler {
 
     private static final String ACTION_EVENT = "open-map";
-
-    private static final String KEY_ADDRESS = "address";
-    private static final String KEY_LATITUDE = "latitude";
-    private static final String KEY_LONGITUDE = "longitude";
-    private static final String KEY_TITLE = "title";
 
     public GoogleMapsOpenMapActionHandler(LayerClient layerClient) {
         super(layerClient, ACTION_EVENT);
@@ -30,36 +29,45 @@ public class GoogleMapsOpenMapActionHandler extends ActionHandler {
     public void performAction(@NonNull Context context, @NonNull MessageModel model) {
         JsonObject data = model.getActionData();
 
-        if (data.size() > 0) {
-            Uri googleMapsUri;
-
-            double latitude = 0.0f;
-            double longitude = 0.0f;
-
-            if (data.has(KEY_LATITUDE) && data.has(KEY_LONGITUDE)) {
-                latitude = data.get(KEY_LATITUDE).getAsDouble();
-                longitude = data.get(KEY_LONGITUDE).getAsDouble();
-            }
-
-            String markerTitle = "";
-            if (data.has(KEY_TITLE)) {
-                markerTitle = data.get(KEY_TITLE).getAsString();
-            }
-
-            if (data.has(KEY_ADDRESS)) {
-                googleMapsUri = constructGoogleMapsUri(data.get(KEY_ADDRESS).getAsString());
-            } else {
-                googleMapsUri = constructGoogleMapsUri(latitude, longitude, markerTitle);
-            }
-
-            Intent openMapsIntent = new Intent(Intent.ACTION_VIEW, googleMapsUri);
-
-            if (openMapsIntent.resolveActivity(context.getPackageManager()) != null) {
-                context.startActivity(openMapsIntent);
-            } else {
-                notifyUnresolvedIntent(context, openMapsIntent);
-            }
+        Gson gson = new Gson();
+        LocationMessageMetadata actionMetadata = gson.fromJson(data, LocationMessageMetadata.class);
+        LocationMessageMetadata modelMetadata = null;
+        if (model instanceof LocationMessageModel) {
+            modelMetadata = ((LocationMessageModel) model).getMetadata();
         }
+
+        String title = actionMetadata.mTitle;
+
+        if (title == null && modelMetadata != null) {
+            title = modelMetadata.mTitle;
+        }
+
+        Uri googleMapsUri = constructGoogleMapsUri(title, actionMetadata);
+        if (googleMapsUri == null && modelMetadata != null) {
+            // Try the model metadata
+            googleMapsUri = constructGoogleMapsUri(title, modelMetadata);
+        }
+        if (googleMapsUri == null) {
+            if (Log.isLoggable(Log.INFO)) {
+                Log.i("No location data to form an intent. Model: " + model);
+            }
+            return;
+        }
+
+        Intent openMapsIntent = new Intent(Intent.ACTION_VIEW, googleMapsUri);
+
+        if (openMapsIntent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(openMapsIntent);
+        } else {
+            notifyUnresolvedIntent(context, openMapsIntent);
+        }
+    }
+
+    private Uri constructGoogleMapsUri(String title, @NonNull LocationMessageMetadata metadata) {
+        if (metadata.mLatitude != null && metadata.mLongitude != null) {
+            return constructGoogleMapsUri(metadata.mLatitude, metadata.mLongitude, title);
+        }
+        return constructGoogleMapsUri(metadata.getFormattedAddress());
     }
 
     /**
@@ -67,9 +75,13 @@ public class GoogleMapsOpenMapActionHandler extends ActionHandler {
      * <a href="https://developer.android.com/guide/components/intents-common.html#Maps">here </a>.
      *
      * @param address the address to send for the maps intent
-     * @return a Uri to use with the {@link Intent#ACTION_VIEW} intent
+     * @return a Uri to use with the {@link Intent#ACTION_VIEW} intent, null if the address is empty
      */
-    private Uri constructGoogleMapsUri(String address) {
+    @Nullable
+    private Uri constructGoogleMapsUri(@Nullable String address) {
+        if (TextUtils.isEmpty(address)) {
+            return null;
+        }
         String queryString = String.format(Locale.US, "geo:0,0?q=%s", Uri.encode(address));
         return Uri.parse(queryString);
     }
