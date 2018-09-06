@@ -26,6 +26,7 @@ import android.view.ViewOutlineProvider;
 import com.layer.xdk.ui.BR;
 import com.layer.xdk.ui.R;
 import com.layer.xdk.ui.message.model.MessageModel;
+import com.layer.xdk.ui.message.view.MessageViewHelper;
 
 public abstract class MessageContainer extends ConstraintLayout {
     private Path mCornerClippingPath = new Path();
@@ -34,6 +35,8 @@ public abstract class MessageContainer extends ConstraintLayout {
     private final Paint mBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF mRect = new RectF();
     private boolean mDrawBorder = true;
+
+    private MessageViewHelper mMessageViewHelper;
 
     public MessageContainer(@NonNull Context context) {
         this(context, null);
@@ -62,6 +65,14 @@ public abstract class MessageContainer extends ConstraintLayout {
         } else {
             mUsingOutline = false;
         }
+
+        mMessageViewHelper = new MessageViewHelper(context);
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMessageViewHelper.performAction();
+            }
+        });
     }
 
     @Override
@@ -114,6 +125,7 @@ public abstract class MessageContainer extends ConstraintLayout {
 
     @CallSuper
     public <T extends MessageModel> void setMessageModel(T model) {
+        mMessageViewHelper.setMessageModel(model);
         ViewDataBinding messageBinding = DataBindingUtil.getBinding(getMessageView());
         messageBinding.setVariable(BR.messageModel, model);
         if (model != null) {

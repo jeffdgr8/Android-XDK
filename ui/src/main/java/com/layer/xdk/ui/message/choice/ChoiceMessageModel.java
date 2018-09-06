@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
@@ -116,7 +117,25 @@ public class ChoiceMessageModel extends MessageModel {
             return super.getActionEvent();
         }
 
+        if (mMetadata != null && mMetadata.mAction != null) {
+            return mMetadata.mAction.getEvent();
+        }
+
         return null;
+    }
+
+    @NonNull
+    @Override
+    public JsonObject getActionData() {
+        if (super.getActionData().size() > 0) {
+            return super.getActionData();
+        }
+
+        if (mMetadata != null && mMetadata.mAction != null) {
+            return mMetadata.mAction.getData();
+        }
+
+        return new JsonObject();
     }
 
     @Override

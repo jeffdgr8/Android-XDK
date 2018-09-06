@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.layer.xdk.ui.BR;
 import com.layer.xdk.ui.R;
 import com.layer.xdk.ui.databinding.XdkUiChoiceMessageViewBinding;
 import com.layer.xdk.ui.message.view.IconProvider;
+import com.layer.xdk.ui.message.view.MessageViewHelper;
 
 import java.util.List;
 import java.util.Set;
@@ -24,6 +26,7 @@ public class ChoiceMessageLayout extends LinearLayout implements
     private XdkUiChoiceMessageViewBinding mBinding;
     private ChoiceButtonSet mChoiceButtonSet;
     private TextView mTitle;
+    private MessageViewHelper mMessageViewHelper;
 
     public ChoiceMessageLayout(Context context) {
         this(context, null, 0);
@@ -35,12 +38,14 @@ public class ChoiceMessageLayout extends LinearLayout implements
 
     public ChoiceMessageLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mMessageViewHelper = new MessageViewHelper(context);
     }
 
     public void setMessageModel(final ChoiceMessageModel model) {
         if (mBinding == null) {
             initializeBinding();
         }
+        mMessageViewHelper.setMessageModel(model);
 
         if (model != null) {
             model.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
@@ -65,6 +70,12 @@ public class ChoiceMessageLayout extends LinearLayout implements
         mChoiceButtonSet = mBinding.choiceButtonSet;
         mChoiceButtonSet.setOnChoiceClickedListener(this);
         mTitle = mBinding.choiceMessageLabel;
+        mTitle.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMessageViewHelper.performAction();
+            }
+        });
     }
 
     private void processModel(ChoiceMessageModel model) {
