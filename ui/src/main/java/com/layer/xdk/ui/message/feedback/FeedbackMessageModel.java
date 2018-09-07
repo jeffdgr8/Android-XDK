@@ -130,7 +130,6 @@ public class FeedbackMessageModel extends MessageModel {
         return null;
     }
 
-
     @Override
     public String getActionEvent() {
         if (super.getActionEvent() != null) {
@@ -156,6 +155,14 @@ public class FeedbackMessageModel extends MessageModel {
         }
 
         return new JsonObject();
+    }
+
+    @Override
+    public int getBackgroundColor() {
+        if (isEditable()) {
+            return super.getBackgroundColor();
+        }
+        return R.color.xdk_ui_feedback_background_disabled;
     }
 
     /**

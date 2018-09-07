@@ -175,5 +175,6 @@
 
     <color name="xdk_ui_feedback_button_enabled">@color/xdk_ui_color_primary_blue</color>
     <color name="xdk_ui_feedback_button_disabled">@color/xdk_ui_color_primary_gray_5</color>
-
+    <color name="xdk_ui_feedback_background_disabled">@color/xdk_ui_color_primary_gray</color>
+    
 </resources>
