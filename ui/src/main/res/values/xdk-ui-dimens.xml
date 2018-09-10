@@ -329,4 +329,12 @@
     <dimen name="xdk_ui_video_message_maximum_height">400dp</dimen>
     <dimen name="xdk_ui_video_message_default_width">192dp</dimen>
     <dimen name="xdk_ui_video_message_default_height">108dp</dimen>
+
+    <!-- ####################################################################################### -->
+    <!-- # Feedback Message View                                                                  # -->
+    <!-- ####################################################################################### -->
+
+    <dimen name="xdk_ui_feedback_message_elevation_enabled">2dp</dimen>
+    <dimen name="xdk_ui_feedback_message_elevation_disabled">0dp</dimen>
+
 </resources>
