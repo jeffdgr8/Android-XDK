@@ -18,7 +18,9 @@
 
     <application>
         <activity android:name=".message.image.popup.ImagePopupActivity"/>
-        <activity android:name=".message.large.LargeMessageActivity"/>
+        <activity
+            android:windowSoftInputMode="stateUnchanged"
+            android:name=".message.large.LargeMessageActivity"/>
 
         <service
             android:name=".media.MediaPlaybackService"

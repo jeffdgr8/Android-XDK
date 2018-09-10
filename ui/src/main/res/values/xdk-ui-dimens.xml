@@ -334,7 +334,6 @@
     <!-- # Feedback Message View                                                                  # -->
     <!-- ####################################################################################### -->
 
-    <dimen name="xdk_ui_feedback_message_elevation_enabled">2dp</dimen>
-    <dimen name="xdk_ui_feedback_message_elevation_disabled">0dp</dimen>
+    <dimen name="xdk_ui_large_feedback_message_elevation">2dp</dimen>
 
 </resources>

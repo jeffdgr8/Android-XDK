@@ -160,7 +160,7 @@ public class FeedbackMessageModel extends MessageModel {
     @Override
     public int getBackgroundColor() {
         if (isEditable()) {
-            return super.getBackgroundColor();
+            return R.color.xdk_ui_feedback_background_enabled;
         }
         return R.color.xdk_ui_feedback_background_disabled;
     }
