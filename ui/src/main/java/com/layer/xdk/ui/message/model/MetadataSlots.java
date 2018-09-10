@@ -73,19 +73,11 @@ public abstract class MetadataSlots<T> {
             // Promotion attempt
             mSlotC = slotD.isEmpty() ? null : slotD.remove();
         }
-        if (mSlotC == null) {
-            // Demotion attempt
-            mSlotC = slotB.isEmpty() ? null : slotB.remove();
-        }
 
         mSlotD = slotD.isEmpty() ? null : slotD.remove();
         if (mSlotD == null) {
             // Demotion attempt
             mSlotD = slotC.isEmpty() ? null : slotC.remove();
-        }
-        if (mSlotD == null) {
-            // Demotion attempt
-            mSlotD = slotB.isEmpty() ? null : slotB.remove();
         }
     }
 

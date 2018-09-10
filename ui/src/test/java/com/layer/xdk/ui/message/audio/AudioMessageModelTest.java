@@ -176,7 +176,7 @@ public class AudioMessageModelTest {
     }
 
     @Test
-    public void testSlotBDemotedToC() {
+    public void testSlotBNotDemotedToC() {
         JsonObject root = new JsonObject();
         root.addProperty("title", "A title");
         root.addProperty("source_url", "http://www.server.com/file.mp3");
@@ -184,10 +184,23 @@ public class AudioMessageModelTest {
         AudioMessageModel audioMessage = createAudioMessage(root.toString());
 
         Truth.assertThat(audioMessage.getTitle()).isEqualTo("A title");
-        Truth.assertThat(audioMessage.getDescription()).isEqualTo("file.mp3");
+        Truth.assertThat(audioMessage.getDescription()).isNull();
         Truth.assertThat(audioMessage.getFooter()).isNull();
     }
 
+    @Test
+    public void testSlotBNotDemotedToD() {
+        JsonObject root = new JsonObject();
+        root.addProperty("title", "A title");
+        root.addProperty("source_url", "http://www.server.com/file.mp3");
+        root.addProperty("artist", "An artist");
+
+        AudioMessageModel audioMessage = createAudioMessage(root.toString());
+
+        Truth.assertThat(audioMessage.getTitle()).isEqualTo("A title");
+        Truth.assertThat(audioMessage.getDescription()).isEqualTo("An artist");
+        Truth.assertThat(audioMessage.getFooter()).isNull();
+    }
 
     @Test
     public void testSlotCDemotedToD() {
@@ -206,7 +219,7 @@ public class AudioMessageModelTest {
     }
 
     @Test
-    public void testSlotBDemotedToD() {
+    public void testSlotCDemotedToEmptyD() {
         JsonObject root = new JsonObject();
         root.addProperty("title", "A title");
         root.addProperty("source_url", "http://www.server.com/file.mp3");
