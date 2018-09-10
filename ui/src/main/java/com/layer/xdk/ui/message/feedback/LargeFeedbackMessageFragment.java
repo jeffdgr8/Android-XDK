@@ -48,6 +48,10 @@ public class LargeFeedbackMessageFragment extends Fragment {
             public void onClick(View v) {
                 mViewModel.send(mBinding.feedbackButton.getRating(),
                         mBinding.comment.getText().toString());
+                // Go to previous activity on send
+                if (getActivity() != null) {
+                    getActivity().finish();
+                }
             }
         });
 
