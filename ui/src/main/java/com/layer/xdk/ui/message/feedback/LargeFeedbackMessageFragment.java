@@ -43,6 +43,7 @@ public class LargeFeedbackMessageFragment extends Fragment {
         mBinding.feedbackButton.setPerformActionOnClick(false);
         mBinding.feedbackButton.setUpdateStateOnClick(true);
         mBinding.feedbackButton.setAllowClicksWhileDisabled(false);
+        mBinding.feedbackButton.setShowRequestedRating(true);
         mBinding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

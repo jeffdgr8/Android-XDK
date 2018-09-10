@@ -32,6 +32,7 @@ public class FeedbackButton extends LinearLayout implements IconProvider, View.O
     private boolean mUpdateStateOnClick;
     private boolean mPerformActionOnClick = true;
     private boolean mAllowClicksWhileDisabled = true;
+    private boolean mShowRequestedRating;
 
     private final ColorStateList mEnabledColor;
     private final ColorStateList mDisabledColor;
@@ -112,7 +113,7 @@ public class FeedbackButton extends LinearLayout implements IconProvider, View.O
         mMessageViewHelper.setMessageModel(model);
         if (model != null) {
             mEnabled = model.isEditable();
-            if (model.getRequestedRating() != null) {
+            if (model.getRequestedRating() != null && mShowRequestedRating) {
                 mRating = model.getRequestedRating();
             } else {
                 mRating = model.getRating();
@@ -149,6 +150,17 @@ public class FeedbackButton extends LinearLayout implements IconProvider, View.O
      */
     public void setAllowClicksWhileDisabled(boolean allowClicksWhileDisabled) {
         mAllowClicksWhileDisabled = allowClicksWhileDisabled;
+    }
+
+    /**
+     * Sets whether to ignore or show the in-memory rating of the {@link FeedbackMessageModel}.
+     * Default is false.
+     *
+     * @see FeedbackMessageModel#getRequestedRating()
+     * @param showRequestedRating true to show the in-memory requested rating, false otherwise
+     */
+    public void setShowRequestedRating(boolean showRequestedRating) {
+        mShowRequestedRating = showRequestedRating;
     }
 
     /**
