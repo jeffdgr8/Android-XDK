@@ -43,7 +43,7 @@ public class AspectVideoView extends VideoView {
 
             int width = 0;
             if (mWidth != 0) {
-                width = getDefaultSize(mWidth, widthMeasureSpec);
+                width = resolveSize(mWidth, widthMeasureSpec);
             }
             if (width == 0 || width > widthSpecSize) {
                 // Too wide or no width supplied. Set to fill space
@@ -71,5 +71,6 @@ public class AspectVideoView extends VideoView {
     public void setSize(double aspectRatio, int width) {
         mAspectRatio = aspectRatio;
         mWidth = width;
+        requestLayout();
     }
 }
