@@ -323,10 +323,8 @@ public class AudioMessageLayout extends LinearLayout implements MediaPlayerMessa
         ViewGroup.LayoutParams layoutParams = getBinding().preview.getLayoutParams();
         int width, height;
         if (requestParams.getUri() != null || requestParams.getUrl() != null) {
-            width = (requestParams.getTargetWidth() > 0 ? requestParams.getTargetWidth()
-                    : ViewGroup.LayoutParams.WRAP_CONTENT);
-            height = (requestParams.getTargetHeight() > 0 ? requestParams.getTargetHeight()
-                    : ViewGroup.LayoutParams.WRAP_CONTENT);
+            width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            height = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else {
             // Use the vector drawable here since we can't load it through the image cache
             getBinding().preview.setImageResource(R.drawable.xdk_ui_file_audio);

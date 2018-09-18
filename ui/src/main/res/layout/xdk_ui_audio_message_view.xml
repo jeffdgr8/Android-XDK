@@ -23,17 +23,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:scaleType="center"
+            android:maxHeight="@dimen/xdk_ui_audio_message_maximum_height"
+            android:maxWidth="@dimen/xdk_ui_message_default_max_width"
+            android:scaleType="centerInside"
             app:loadFrom="@{messageModel.previewRequestParameters}"
             app:usingImageLoader="@{messageModel.imageCacheWrapper}"/>
 
         <ProgressBar
             android:id="@+id/progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:minHeight="0dp"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/xdk_ui_audio_message_progress_bar_height"/>
+            android:layout_height="@dimen/xdk_ui_audio_message_progress_bar_height"
+            android:minHeight="0dp"
+            android:visibility="gone"/>
 
     </com.layer.xdk.ui.message.audio.AudioMessageLayout>
 
