@@ -39,7 +39,7 @@ public class VideoMessageLayout extends FrameLayout {
         mPreviewImage.setMinimumWidth(getResources().getDimensionPixelSize(R.dimen.xdk_ui_video_message_minimum_width));
         mPreviewImage.setMinimumHeight(getResources().getDimensionPixelSize(R.dimen.xdk_ui_video_message_minimum_height));
         mPreviewImage.setAdjustViewBounds(true);
-        mPreviewImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        mPreviewImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
         addView(mPreviewImage);
 
         AppCompatImageView overlay = new AppCompatImageView(context, attrs, defStyleAttr);

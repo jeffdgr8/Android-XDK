@@ -308,7 +308,7 @@
     <dimen name="xdk_ui_audio_message_default_image_width">@dimen/xdk_ui_file_message_image_width</dimen>
     <dimen name="xdk_ui_audio_message_control_size">28dp</dimen>
     <dimen name="xdk_ui_audio_message_progress_bar_height">4dp</dimen>
-    <dimen name="xdk_ui_audio_message_maximum_height">400dp</dimen>
+    <dimen name="xdk_ui_audio_message_maximum_height">250dp</dimen>
 
     <!-- ####################################################################################### -->
     <!-- # Large Media Message View                                                            # -->
@@ -327,7 +327,7 @@
     <dimen name="xdk_ui_video_message_overlay_size">28dp</dimen>
     <dimen name="xdk_ui_video_message_minimum_width">48dp</dimen>
     <dimen name="xdk_ui_video_message_minimum_height">48dp</dimen>
-    <dimen name="xdk_ui_video_message_maximum_height">400dp</dimen>
+    <dimen name="xdk_ui_video_message_maximum_height">250dp</dimen>
     <dimen name="xdk_ui_video_message_default_width">192dp</dimen>
     <dimen name="xdk_ui_video_message_default_height">108dp</dimen>
 
@@ -341,6 +341,6 @@
     <!-- # Image Message View                                                                  # -->
     <!-- ####################################################################################### -->
 
-    <dimen name="xdk_ui_image_message_maximum_height">400dp</dimen>
+    <dimen name="xdk_ui_image_message_maximum_height">250dp</dimen>
 
 </resources>

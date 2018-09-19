@@ -235,7 +235,7 @@ public class AudioMessageModel extends MessageModel {
 
         if (mMetadata.getPreviewWidth() > 0 && mMetadata.getPreviewHeight() > 0) {
             builder.resize(mMetadata.getPreviewWidth(), mMetadata.getPreviewHeight());
-            builder.centerInside(true);
+            builder.centerCrop(true);
         }
         mPreviewRequestParameters = builder.build();
     }

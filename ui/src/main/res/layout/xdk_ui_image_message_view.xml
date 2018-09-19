@@ -18,7 +18,7 @@
         android:adjustViewBounds="true"
         android:maxHeight="@dimen/xdk_ui_image_message_maximum_height"
         android:maxWidth="@dimen/xdk_ui_message_default_max_width"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         app:loadFrom="@{messageModel.previewRequestParameters ?? messageModel.sourceRequestParameters}"
         app:messageModel="@{messageModel}"
         app:usingImageLoader="@{messageModel.imageCacheWrapper}"/>

@@ -13,6 +13,7 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.layer.xdk.ui.BR;
@@ -325,11 +326,13 @@ public class AudioMessageLayout extends LinearLayout implements MediaPlayerMessa
         if (requestParams.getUri() != null || requestParams.getUrl() != null) {
             width = ViewGroup.LayoutParams.WRAP_CONTENT;
             height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            getBinding().preview.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
             // Use the vector drawable here since we can't load it through the image cache
             getBinding().preview.setImageResource(R.drawable.xdk_ui_file_audio);
             width = getResources().getDimensionPixelSize(R.dimen.xdk_ui_audio_message_default_image_width);
             height = getResources().getDimensionPixelSize(R.dimen.xdk_ui_audio_message_default_image_height);
+            getBinding().preview.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         }
         layoutParams.width = width;
         layoutParams.height = height;

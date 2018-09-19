@@ -266,7 +266,7 @@ public class VideoMessageModel extends MessageModel {
         if (width > 0 && height > 0) {
             builder.resize(width, height);
             // Maintain image's aspect ratio
-            builder.centerInside(true);
+            builder.centerCrop(true);
         }
 
         mPreviewRequestParameters = builder.build();

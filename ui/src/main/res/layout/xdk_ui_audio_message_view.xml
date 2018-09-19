@@ -25,7 +25,7 @@
             android:adjustViewBounds="true"
             android:maxHeight="@dimen/xdk_ui_audio_message_maximum_height"
             android:maxWidth="@dimen/xdk_ui_message_default_max_width"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             app:loadFrom="@{messageModel.previewRequestParameters}"
             app:usingImageLoader="@{messageModel.imageCacheWrapper}"/>
 

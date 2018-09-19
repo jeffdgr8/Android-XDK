@@ -196,7 +196,7 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
                 sourceRequestBuilder.url(mMetadata.mSourceUrl);
                 if (width > 0 && height > 0) {
                     sourceRequestBuilder.resize(width, height);
-                    sourceRequestBuilder.centerInside(true);
+                    sourceRequestBuilder.centerCrop(true);
                 }
                 sourceRequestBuilder.exifOrientation(mMetadata.mOrientation)
                         .tag(getClass().getSimpleName());
@@ -208,7 +208,7 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
 
             if (width > 0 && height > 0) {
                 previewRequestBuilder.resize(width, height);
-                previewRequestBuilder.centerInside(true);
+                previewRequestBuilder.centerCrop(true);
             }
 
             previewRequestBuilder.url(previewUrl)
@@ -234,7 +234,7 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
 
         if (mMetadata.getPreviewWidth() > 0 && mMetadata.getPreviewHeight() > 0) {
             builder.resize(mMetadata.getPreviewWidth(), mMetadata.getPreviewHeight());
-            builder.centerInside(true);
+            builder.centerCrop(true);
         }
         mPreviewRequestParameters = builder.build();
     }
@@ -253,7 +253,7 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
 
         if (mMetadata.getWidth() > 0 && mMetadata.getHeight() > 0) {
             builder.resize(mMetadata.getWidth(), mMetadata.getHeight());
-            builder.centerInside(true);
+            builder.centerCrop(true);
         }
         mSourceRequestParameters = builder.build();
     }
