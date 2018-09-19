@@ -52,6 +52,7 @@ public class ButtonMessageModel extends MessageModel {
     protected void parse(@NonNull MessagePart messagePart) {
         JsonReader reader = new JsonReader(new InputStreamReader(messagePart.getDataStream()));
         mMetadata = getGson().fromJson(reader, ButtonMessageMetadata.class);
+        setMetadata(mMetadata);
 
         // Populate choice data objects
         Set<ChoiceConfigMetadata> choiceConfigs = new HashSet<>();

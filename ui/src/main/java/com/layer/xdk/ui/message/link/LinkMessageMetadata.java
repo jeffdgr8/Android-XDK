@@ -1,11 +1,10 @@
 package com.layer.xdk.ui.message.link;
 
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
-import com.layer.xdk.ui.message.model.Action;
+import com.layer.xdk.ui.message.MessageMetadata;
 
 @SuppressWarnings("WeakerAccess") // For Gson serialization/de-serialization
-public class LinkMessageMetadata {
+public class LinkMessageMetadata extends MessageMetadata {
 
     @SerializedName("author")
     public String mAuthor;
@@ -17,8 +16,4 @@ public class LinkMessageMetadata {
     public String mImageUrl;
     @SerializedName("url")
     public String mUrl;
-    @SerializedName("action")
-    public Action mAction;
-    @SerializedName("custom_data")
-    public JsonObject mCustomData;
 }

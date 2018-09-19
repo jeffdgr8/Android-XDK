@@ -1,6 +1,7 @@
 package com.layer.xdk.ui.message.model;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.gson.JsonObject;
 
@@ -11,8 +12,7 @@ public class Action {
     private String mEvent;
     private JsonObject mData;
 
-    public Action(@NonNull String event) {
-        mEvent = event;
+    public Action() {
         mData = new JsonObject();
     }
 
@@ -23,7 +23,7 @@ public class Action {
      *
      * @return a {@link String} containing the action name
      */
-    @NonNull
+    @Nullable
     public String getEvent() {
         return mEvent;
     }
@@ -35,7 +35,7 @@ public class Action {
      *
      * @param event a {@link String} containing the action name
      */
-    public void setEvent(@NonNull String event) {
+    public void setEvent(@Nullable String event) {
         mEvent = event;
     }
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
@@ -28,6 +27,7 @@ public class LinkMessageModel extends MessageModel implements OpenUrlActionHandl
     public LinkMessageModel(@NonNull Context context, @NonNull LayerClient layerClient,
                             @NonNull Message message) {
         super(context, layerClient, message);
+        setDefaultActionEvent(ACTION_OPEN_URL);
     }
 
     @Override
@@ -45,6 +45,7 @@ public class LinkMessageModel extends MessageModel implements OpenUrlActionHandl
         InputStreamReader inputStreamReader = new InputStreamReader(messagePart.getDataStream());
         JsonReader reader = new JsonReader(inputStreamReader);
         mMetadata = getGson().fromJson(reader, LinkMessageMetadata.class);
+        setMetadata(mMetadata);
         try {
             inputStreamReader.close();
         } catch (IOException e) {
@@ -75,33 +76,6 @@ public class LinkMessageModel extends MessageModel implements OpenUrlActionHandl
     @Override
     public String getFooter() {
         return mMetadata != null ? mMetadata.mAuthor : null;
-    }
-
-    @Override
-    public String getActionEvent() {
-        if (super.getActionEvent() != null) {
-            return super.getActionEvent();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getEvent();
-        }
-
-        return ACTION_OPEN_URL;
-    }
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getData();
-        }
-
-        return new JsonObject();
     }
 
     @Override

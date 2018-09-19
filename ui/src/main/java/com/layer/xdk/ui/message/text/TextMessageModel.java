@@ -17,6 +17,8 @@ import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
 import com.layer.sdk.messaging.MessagePart;
 import com.layer.xdk.ui.R;
+import com.layer.xdk.ui.message.MessageMetadata;
+import com.layer.xdk.ui.message.model.Action;
 import com.layer.xdk.ui.message.model.MessageModel;
 
 public class TextMessageModel extends MessageModel {
@@ -28,8 +30,6 @@ public class TextMessageModel extends MessageModel {
     private String mTitle;
     private String mSubtitle;
     private String mAuthor;
-    private String mActionEvent;
-    private JsonObject mCustomData;
 
     public TextMessageModel(@NonNull Context context, @NonNull LayerClient layerClient,
                             @NonNull Message message) {
@@ -60,14 +60,17 @@ public class TextMessageModel extends MessageModel {
         mSubtitle = jsonObject.has("subtitle") ? jsonObject.get("subtitle").getAsString().trim() : null;
         mTitle = jsonObject.has("title") ? jsonObject.get("title").getAsString().trim() : null;
         mAuthor = jsonObject.has("author") ? jsonObject.get("author").getAsString().trim() : null;
+        MessageMetadata metadata = new MessageMetadata();
         if (jsonObject.has("action")) {
             JsonObject action = jsonObject.getAsJsonObject("action");
-            mActionEvent = action.get("event").getAsString();
-            mCustomData = action.get("data").getAsJsonObject();
-        } else {
-            mActionEvent = null;
-            mCustomData = null;
+            metadata.mAction = new Action();
+            metadata.mAction.setEvent(action.get("event").getAsString());
+            metadata.mAction.setData(action.get("data").getAsJsonObject());
         }
+        if (jsonObject.has("custom_data")) {
+            metadata.mCustomData = jsonObject.get("custom_data").getAsJsonObject();
+        }
+        setMetadata(metadata);
 
         linkifyText();
     }
@@ -104,29 +107,6 @@ public class TextMessageModel extends MessageModel {
     @Bindable
     public String getDescription() {
         return mSubtitle;
-    }
-
-    @Override
-    public String getActionEvent() {
-        if (super.getActionEvent() != null) {
-            return super.getActionEvent();
-        }
-
-        return mActionEvent;
-    }
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mCustomData != null) {
-            return mCustomData;
-        }
-
-        return new JsonObject();
     }
 
     @Override

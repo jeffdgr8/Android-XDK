@@ -47,6 +47,7 @@ public class ReceiptMessageModel extends MessageModel {
         InputStreamReader inputStreamReader = new InputStreamReader(messagePart.getDataStream());
         JsonReader reader = new JsonReader(inputStreamReader);
         mMetadata = getGson().fromJson(reader, ReceiptMessageMetadata.class);
+        setMetadata(mMetadata);
         try {
             inputStreamReader.close();
         } catch (IOException e) {

@@ -6,13 +6,13 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
 import com.layer.sdk.messaging.MessagePart;
 import com.layer.xdk.ui.BR;
 import com.layer.xdk.ui.R;
+import com.layer.xdk.ui.message.MessageMetadata;
 import com.layer.xdk.ui.message.model.MessageModel;
 import com.layer.xdk.ui.message.response.ResponseSummaryMetadataV2;
 import com.layer.xdk.ui.message.response.crdt.OrOperationResult;
@@ -52,6 +52,11 @@ public class ChoiceMessageModel extends MessageModel {
         InputStreamReader inputStreamReader = new InputStreamReader(messagePart.getDataStream());
         JsonReader reader = new JsonReader(inputStreamReader);
         mMetadata = getGson().fromJson(reader, ChoiceMessageMetadata.class);
+
+        MessageMetadata regularMetadata = new MessageMetadata();
+        regularMetadata.mAction = mMetadata.mAction;
+        regularMetadata.mCustomData = mMetadata.mCustomData;
+        setMetadata(regularMetadata);
         try {
             inputStreamReader.close();
         } catch (IOException e) {
@@ -109,33 +114,6 @@ public class ChoiceMessageModel extends MessageModel {
     @Override
     public String getFooter() {
         return null;
-    }
-
-    @Override
-    public String getActionEvent() {
-        if (super.getActionEvent() != null) {
-            return super.getActionEvent();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getEvent();
-        }
-
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getData();
-        }
-
-        return new JsonObject();
     }
 
     @Override

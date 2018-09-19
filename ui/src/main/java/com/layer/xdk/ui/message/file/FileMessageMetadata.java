@@ -1,13 +1,12 @@
 package com.layer.xdk.ui.message.file;
 
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
-import com.layer.xdk.ui.message.model.Action;
+import com.layer.xdk.ui.message.MessageMetadata;
 
 import java.util.Date;
 
 @SuppressWarnings("WeakerAccess") // For Gson serialization/de-serialization
-public class FileMessageMetadata {
+public class FileMessageMetadata extends MessageMetadata {
 
     @SerializedName("author")
     public String mAuthor;
@@ -32,10 +31,4 @@ public class FileMessageMetadata {
 
     @SerializedName("source_url")
     public String mSourceUrl;
-
-    @SerializedName("action")
-    public Action mAction;
-
-    @SerializedName("custom_data")
-    public JsonObject mCustomData;
 }

@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Base64;
 
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
@@ -37,6 +36,7 @@ public class VideoMessageModel extends MessageModel {
             @NonNull LayerClient layerClient,
             @NonNull Message message) {
         super(context, layerClient, message);
+        setDefaultActionEvent(DEFAULT_ACTION_EVENT);
     }
 
     @Override
@@ -44,6 +44,7 @@ public class VideoMessageModel extends MessageModel {
         InputStreamReader inputStreamReader = new InputStreamReader(messagePart.getDataStream());
         JsonReader reader = new JsonReader(inputStreamReader);
         mMetadata = getGson().fromJson(reader, VideoMessageMetadata.class);
+        setMetadata(mMetadata);
         if (mMetadata.mSourceUrl != null) {
             mSourceUri = Uri.parse(mMetadata.mSourceUrl);
             mVideoPartId = messagePart.getId();
@@ -153,33 +154,6 @@ public class VideoMessageModel extends MessageModel {
     @Override
     public int getBackgroundColor() {
         return R.color.xdk_ui_color_black;
-    }
-
-    @Override
-    public String getActionEvent() {
-        if (super.getActionEvent() != null) {
-            return super.getActionEvent();
-        }
-
-        if (mMetadata.mAction != null) {
-            return mMetadata.mAction.getEvent();
-        } else {
-            return DEFAULT_ACTION_EVENT;
-        }
-    }
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getData();
-        }
-
-        return new JsonObject();
     }
 
     /**

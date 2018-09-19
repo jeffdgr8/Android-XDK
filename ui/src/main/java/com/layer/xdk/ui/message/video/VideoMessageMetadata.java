@@ -3,13 +3,13 @@ package com.layer.xdk.ui.message.video;
 import android.support.annotation.Dimension;
 
 import com.google.gson.annotations.SerializedName;
-import com.layer.xdk.ui.message.model.Action;
+import com.layer.xdk.ui.message.MessageMetadata;
 import com.layer.xdk.ui.util.DisplayUtils;
 import com.layer.xdk.ui.util.Log;
 
 import java.util.Date;
 
-public class VideoMessageMetadata {
+public class VideoMessageMetadata extends MessageMetadata {
 
     @SerializedName("title")
     public String mTitle;
@@ -52,9 +52,6 @@ public class VideoMessageMetadata {
 
     @SerializedName("duration")
     public double mDuration;
-
-    @SerializedName("action")
-    public Action mAction;
 
     /**
      * @return the preview width in pixels

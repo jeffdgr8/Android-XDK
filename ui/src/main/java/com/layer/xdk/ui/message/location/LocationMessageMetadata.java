@@ -4,12 +4,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
-import com.layer.xdk.ui.message.model.Action;
-
-import org.json.JSONObject;
+import com.layer.xdk.ui.message.MessageMetadata;
 
 @SuppressWarnings("WeakerAccess") // For Gson serialization/de-serialization
-public class LocationMessageMetadata {
+public class LocationMessageMetadata extends MessageMetadata {
 
     @SerializedName("accuracy")
     public Double mAccuracy;
@@ -45,12 +43,6 @@ public class LocationMessageMetadata {
     public String mTitle;
     @SerializedName("description")
     public String mDescription;
-
-    @SerializedName("custom_data")
-    public JSONObject mCustomData;
-
-    @SerializedName("action")
-    public Action mAction;
 
     @NonNull
     public Double getAltitude() {

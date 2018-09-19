@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
@@ -57,6 +56,10 @@ public class ProductMessageModel extends MessageModel implements OpenUrlActionHa
         InputStreamReader inputStreamReader = new InputStreamReader(messagePart.getDataStream());
         reader = new JsonReader(inputStreamReader);
         mMetadata = getGson().fromJson(reader, ProductMessageMetadata.class);
+        setMetadata(mMetadata);
+        if (mMetadata.mUrl != null) {
+            setDefaultActionEvent(DEFAULT_ACTION_EVENT);
+        }
         mOptions.clear();
         try {
             inputStreamReader.close();
@@ -93,35 +96,6 @@ public class ProductMessageModel extends MessageModel implements OpenUrlActionHa
     @Override
     public boolean getHasContent() {
         return mMetadata != null;
-    }
-
-    @Nullable
-    @Override
-    public String getActionEvent() {
-        String actionEvent = super.getActionEvent();
-        if (actionEvent == null && mMetadata != null) {
-            if (mMetadata.mAction != null) {
-                actionEvent = mMetadata.mAction.getEvent();
-            } else if (mMetadata.mUrl != null) {
-                actionEvent = DEFAULT_ACTION_EVENT;
-            }
-        }
-
-        return actionEvent;
-    }
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getData();
-        }
-
-        return new JsonObject();
     }
 
     @Nullable

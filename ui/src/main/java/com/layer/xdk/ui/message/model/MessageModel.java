@@ -24,6 +24,7 @@ import com.layer.sdk.messaging.MessagePart;
 import com.layer.xdk.ui.BR;
 import com.layer.xdk.ui.identity.IdentityFormatter;
 import com.layer.xdk.ui.identity.adapter.IdentityItemModel;
+import com.layer.xdk.ui.message.MessageMetadata;
 import com.layer.xdk.ui.message.MessagePartUtils;
 import com.layer.xdk.ui.message.adapter.MessageGrouping;
 import com.layer.xdk.ui.message.adapter.MessageModelAdapter;
@@ -114,6 +115,9 @@ public abstract class MessageModel extends BaseObservable {
     // it to be GC'd should this model go out of scope
     private PartDownloadListener mPartDownloadListener;
     private int mDownloadProgress;
+
+    private MessageMetadata mMetadata;
+    private String mDefaultActionEvent;
 
     public MessageModel(@NonNull Context context, @NonNull LayerClient layerClient,
                         @NonNull Message message) {
@@ -540,7 +544,17 @@ public abstract class MessageModel extends BaseObservable {
     @CallSuper
     @Nullable
     public String getActionEvent() {
-        return mAction != null ? mAction.getEvent() : null;
+        String event = null;
+        if (mAction != null) {
+            event = mAction.getEvent();
+        }
+        if (event == null && mMetadata != null && mMetadata.mAction != null) {
+            event = mMetadata.mAction.getEvent();
+        }
+        if (event == null) {
+            event = mDefaultActionEvent;
+        }
+        return event;
     }
 
     /**
@@ -555,7 +569,11 @@ public abstract class MessageModel extends BaseObservable {
     @NonNull
     @CallSuper
     public JsonObject getActionData() {
-        return mAction != null ? mAction.getData() : new JsonObject();
+        JsonObject data = mAction != null ? mAction.getData() : new JsonObject();
+        if (data.size() == 0 && mMetadata != null && mMetadata.mAction != null) {
+            return mMetadata.mAction.getData();
+        }
+        return data;
     }
 
     /**
@@ -846,6 +864,25 @@ public abstract class MessageModel extends BaseObservable {
      */
     public void postAnalyticsEvent(LayerAnalyticsEvent event) {
         mLayerClient.postAnalyticsEvent(event);
+    }
+
+    /**
+     * Set the metadata to use when determining action event/data.
+     *
+     * @param metadata metadata parsed from the MessagePart body
+     */
+    protected void setMetadata(MessageMetadata metadata) {
+        mMetadata = metadata;
+    }
+
+    /**
+     * Set a default action event to use should no event be defined in the metadata or in this
+     * class.
+     *
+     * @param defaultActionEvent default action to use should none be specified
+     */
+    protected void setDefaultActionEvent(@Nullable String defaultActionEvent) {
+        mDefaultActionEvent = defaultActionEvent;
     }
 
     /**

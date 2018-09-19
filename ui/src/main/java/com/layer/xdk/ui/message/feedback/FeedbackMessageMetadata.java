@@ -3,11 +3,10 @@ package com.layer.xdk.ui.message.feedback;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
-import com.layer.xdk.ui.message.model.Action;
+import com.layer.xdk.ui.message.MessageMetadata;
 
-public class FeedbackMessageMetadata {
+public class FeedbackMessageMetadata extends MessageMetadata {
 
     @SerializedName("title")
     public String mTitle;
@@ -23,12 +22,6 @@ public class FeedbackMessageMetadata {
 
     @SerializedName("enabled_for")
     public String mEnabledFor;
-
-    @SerializedName("action")
-    public Action mAction;
-
-    @SerializedName("custom_data")
-    public JsonObject mCustomData;
 
     public transient boolean mEnabledForMe;
 

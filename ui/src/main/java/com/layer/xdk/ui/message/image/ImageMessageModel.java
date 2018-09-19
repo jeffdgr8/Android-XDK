@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Pair;
 
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
@@ -42,6 +41,7 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
     public ImageMessageModel(@NonNull Context context, @NonNull LayerClient layerClient,
                              @NonNull Message message) {
         super(context, layerClient, message);
+        setDefaultActionEvent(ACTION_EVENT_OPEN_URL);
     }
 
     @Override
@@ -60,6 +60,7 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
 
         try {
             mMetadata = new ImageMessageMetadata();
+            setMetadata(mMetadata);
             if (parts.getInfoPart() != null) {
                 JSONObject infoObject = new JSONObject(new String(parts.getInfoPart().getData()));
                 mMetadata.mOrientation = infoObject.getInt("orientation");
@@ -126,33 +127,6 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
         return true;
     }
 
-    @Override
-    public String getActionEvent() {
-        if (super.getActionEvent() != null) {
-            return super.getActionEvent();
-        }
-
-        if (mMetadata.mAction != null) {
-            return mMetadata.mAction.getEvent();
-        } else {
-            return ACTION_EVENT_OPEN_URL;
-        }
-    }
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getData();
-        }
-
-        return new JsonObject();
-    }
-
     @Nullable
     @Override
     public String getPreviewText() {
@@ -201,6 +175,7 @@ public class ImageMessageModel extends MessageModel implements OpenUrlActionHand
     private void parseRootMessagePart(MessagePart messagePart) {
         JsonReader reader = new JsonReader(new InputStreamReader(messagePart.getDataStream()));
         mMetadata = getGson().fromJson(reader, ImageMessageMetadata.class);
+        setMetadata(mMetadata);
 
         Message message = getMessage();
         if (!MessagePartUtils.hasMessagePartWithRole(message, ROLE_PREVIEW, ROLE_SOURCE)) {

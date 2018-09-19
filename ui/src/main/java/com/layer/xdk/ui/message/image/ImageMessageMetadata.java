@@ -3,11 +3,11 @@ package com.layer.xdk.ui.message.image;
 import android.support.annotation.Dimension;
 
 import com.google.gson.annotations.SerializedName;
-import com.layer.xdk.ui.message.model.Action;
+import com.layer.xdk.ui.message.MessageMetadata;
 import com.layer.xdk.ui.util.DisplayUtils;
 
 @SuppressWarnings("WeakerAccess") // For Gson serialization/de-serialization
-public class ImageMessageMetadata {
+public class ImageMessageMetadata extends MessageMetadata {
     @SerializedName("title")
     public String mTitle;
 
@@ -47,9 +47,6 @@ public class ImageMessageMetadata {
 
     @SerializedName("orientation")
     public int mOrientation;
-
-    @SerializedName("action")
-    public Action mAction;
 
     @Dimension
     public int getWidth() {

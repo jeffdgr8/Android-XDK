@@ -5,12 +5,12 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 import com.layer.xdk.ui.R;
-import com.layer.xdk.ui.message.model.Action;
+import com.layer.xdk.ui.message.MessageMetadata;
 
 import java.util.List;
 
 @SuppressWarnings("WeakerAccess") // For Gson serialization/de-serialization
-public class ProductMessageMetadata {
+public class ProductMessageMetadata extends MessageMetadata {
 
     @SerializedName("brand")
     public String mBrand;
@@ -35,9 +35,6 @@ public class ProductMessageMetadata {
 
     @SerializedName("url")
     public String mUrl;
-
-    @SerializedName("action")
-    public Action mAction;
 
     public int getQuantity() {
         return mQuantity != null ? mQuantity : 1;

@@ -38,7 +38,8 @@ public class OpenUrlActionHandler extends ActionHandler {
 
         String url = getUrl(model, data);
 
-        if (data.has(KEY_MIME_TYPE) || model instanceof ImageMessageModel) {
+        boolean imageModelNotOverridden = model instanceof ImageMessageModel && !data.has(KEY_URL);
+        if (data.has(KEY_MIME_TYPE) || imageModelNotOverridden) {
             openPopupImage(context, url, model, data);
         } else {
             openUrl(context, url);

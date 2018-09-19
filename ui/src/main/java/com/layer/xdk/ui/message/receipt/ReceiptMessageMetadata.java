@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 import com.layer.xdk.ui.R;
+import com.layer.xdk.ui.message.MessageMetadata;
 
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 @SuppressWarnings("WeakerAccess") // For Gson serialization/de-serialization
-public class ReceiptMessageMetadata {
+public class ReceiptMessageMetadata extends MessageMetadata {
 
     @SerializedName("created_at")
     public String mCreatedAt;

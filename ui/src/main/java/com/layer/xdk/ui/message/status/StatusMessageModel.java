@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.util.Linkify;
 
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
@@ -48,6 +47,7 @@ public class StatusMessageModel extends MessageModel {
         InputStreamReader inputStreamReader = new InputStreamReader(messagePart.getDataStream());
         JsonReader reader = new JsonReader(inputStreamReader);
         mMetadata = getGson().fromJson(reader, StatusMessageMetadata.class);
+        setMetadata(mMetadata);
         if (mMetadata != null && mMetadata.mText != null) {
             mText = new SpannableString(mMetadata.mText);
             Linkify.addLinks(mText, Linkify.ALL);
@@ -96,33 +96,6 @@ public class StatusMessageModel extends MessageModel {
             return mText.toString();
         }
         return getAppContext().getString(R.string.xdk_ui_status_message_preview_text);
-    }
-
-    @Override
-    public String getActionEvent() {
-        if (super.getActionEvent() != null) {
-            return super.getActionEvent();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getEvent();
-        }
-        return null;
-    }
-
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getData();
-        }
-
-        return new JsonObject();
     }
 
     @Nullable

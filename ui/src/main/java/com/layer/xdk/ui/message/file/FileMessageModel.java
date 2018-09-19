@@ -13,7 +13,6 @@ import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;
@@ -59,6 +58,7 @@ public class FileMessageModel extends MessageModel {
                             @NonNull Message message) {
         super(context, layerClient, message);
         mFileProviderAuthority = context.getPackageName() + ".file_provider";
+        setDefaultActionEvent(ACTION_EVENT_OPEN_FILE);
     }
 
     @Override
@@ -77,6 +77,7 @@ public class FileMessageModel extends MessageModel {
         InputStreamReader inputStreamReader = new InputStreamReader(messagePart.getDataStream());
         reader = new JsonReader(inputStreamReader);
         mMetadata = getGson().fromJson(reader, FileMessageMetadata.class);
+        setMetadata(mMetadata);
         setupFileIconDrawable(mMetadata.mMimeType);
         try {
             inputStreamReader.close();
@@ -111,33 +112,6 @@ public class FileMessageModel extends MessageModel {
             return Formatter.formatShortFileSize(getAppContext(), mMetadata.mSize);
         }
         return null;
-    }
-
-    @Override
-    public String getActionEvent() {
-        if (super.getActionEvent() != null) {
-            return super.getActionEvent();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getEvent();
-        }
-
-        return ACTION_EVENT_OPEN_FILE;
-    }
-
-    @NonNull
-    @Override
-    public JsonObject getActionData() {
-        if (super.getActionData().size() > 0) {
-            return super.getActionData();
-        }
-
-        if (mMetadata != null && mMetadata.mAction != null) {
-            return mMetadata.mAction.getData();
-        }
-
-        return new JsonObject();
     }
 
     @Nullable
