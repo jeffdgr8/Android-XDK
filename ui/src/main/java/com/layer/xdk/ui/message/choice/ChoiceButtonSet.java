@@ -44,7 +44,26 @@ public class ChoiceButtonSet extends LinearLayout {
         // Default orientation
         setOrientation(VERTICAL);
         setShowDividers(SHOW_DIVIDER_MIDDLE);
-        setDividerDrawable(ContextCompat.getDrawable(context, R.drawable.xdk_ui_linear_layout_divider_horizontal));
+    }
+
+    @Override
+    public void setOrientation(int orientation) {
+        super.setOrientation(orientation);
+        int dividerResource;
+        switch (orientation) {
+            case HORIZONTAL:
+                dividerResource = R.drawable.xdk_ui_linear_layout_divider_vertical;
+                break;
+            case VERTICAL:
+                dividerResource = R.drawable.xdk_ui_linear_layout_divider_horizontal;
+                break;
+            default:
+                if (Log.isLoggable(Log.WARN)) {
+                    Log.w("Not able to set divider background with an invalid orientation. Orientation: " + orientation);
+                }
+                return;
+        }
+        setDividerDrawable(ContextCompat.getDrawable(getContext(), dividerResource));
     }
 
     public void setOnChoiceClickedListener(OnChoiceClickedListener onChoiceClickedListener) {
