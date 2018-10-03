@@ -52,6 +52,7 @@ public class AvatarView extends View {
     private static final float BORDER_SIZE_DP = 1f;
     private static final float MULTI_FRACTION = 0.83f;
     private final Drawable mAvatarPlaceholder;
+    private final Drawable mMultiAvatarPlaceholder;
 
     static {
         PAINT_TRANSPARENT.setARGB(0, 255, 255, 255);
@@ -96,7 +97,8 @@ public class AvatarView extends View {
         parseStyle(getContext(), attrs, defStyleAttr);
         mParticipants = new LinkedHashSet<>();
 
-        mAvatarPlaceholder = AppCompatResources.getDrawable(getContext(), R.drawable.xdk_ui_avatar_placeholder);
+        mAvatarPlaceholder = AppCompatResources.getDrawable(getContext(), R.drawable.xdk_ui_avatar_placeholder_single);
+        mMultiAvatarPlaceholder = AppCompatResources.getDrawable(getContext(), R.drawable.xdk_ui_avatar_placeholder_group);
 
         mParticipants = new LinkedHashSet<>();
 
@@ -354,21 +356,25 @@ public class AvatarView extends View {
             BitmapWrapper bitmapWrapper = mIdentityBitmapWrapperMap.get(identity);
             Bitmap bitmap = (bitmapWrapper == null) ? null : bitmapWrapper.getBitmap();
 
-            //Check if the participants are more than two and display the group avatar placeholder
+            // Check if the participants are more than two and display the group avatar placeholder
             if (mParticipantsInitialSize > 2 && !hasDrawnGroupAvatarResource) {
                 hasDrawnGroupAvatarResource = true;
                 mContentRect.roundOut(mImageRect);
-                mAvatarPlaceholder.setBounds(mImageRect);
-                mAvatarPlaceholder.draw(canvas);
+                mMultiAvatarPlaceholder.setBounds(mImageRect);
+                mMultiAvatarPlaceholder.draw(canvas);
             } else {
                 if (bitmap != null && identity.getAvatarImageUrl() != null) {
                     canvas.drawBitmap(bitmap, mContentRect.left, mContentRect.top, PAINT_BITMAP);
-                } else {
+                } else if (!TextUtils.isEmpty(entry.getValue())) {
                     String initials = entry.getValue();
                     mPaintInitials.setTextSize(mTextSize);
                     mPaintInitials.getTextBounds(initials, 0, initials.length(), mRect);
                     canvas.drawCircle(cx, cy, contentRadius, mPaintBackground);
                     canvas.drawText(initials, cx - mRect.centerX(), cy - mRect.centerY() - 1f, mPaintInitials);
+                } else {
+                    mContentRect.roundOut(mImageRect);
+                    mAvatarPlaceholder.setBounds(mImageRect);
+                    mAvatarPlaceholder.draw(canvas);
                 }
             }
 
