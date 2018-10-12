@@ -283,6 +283,7 @@ public class LargeMediaViewModel extends AndroidViewModel {
         }
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setData(mSourceUri);
         if (mSourceUri.getScheme().equals("content")) {
             // Set to a generic video type since the internal file name does not have the
