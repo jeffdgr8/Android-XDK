@@ -153,7 +153,11 @@ public class VideoMessageModel extends MessageModel {
 
     @Override
     public int getBackgroundColor() {
-        return R.color.xdk_ui_color_black;
+        if (getPreviewRequestParameters() == null) {
+            return R.color.xdk_ui_color_black;
+        } else {
+            return R.color.xdk_ui_color_primary_gray;
+        }
     }
 
     /**
