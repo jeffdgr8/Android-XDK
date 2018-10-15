@@ -10,11 +10,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import android.content.Context;
-import android.test.mock.MockContext;
 
 import com.layer.xdk.ui.message.model.MessageModel;
 
 import org.junit.Test;
+import org.robolectric.RuntimeEnvironment;
 
 public class ActionHandlerRegistryTest {
 
@@ -23,7 +23,7 @@ public class ActionHandlerRegistryTest {
         ActionHandler mockHandler = mock(ActionHandler.class);
         when(mockHandler.getEvent()).thenReturn("event");
         ActionHandlerRegistry.registerHandler(mockHandler);
-        Context context = new MockContext();
+        Context context = RuntimeEnvironment.systemContext;
         MessageModel mockModel = mock(MessageModel.class);
         ActionHandlerRegistry.dispatchEvent(context, "event", mockModel);
 
@@ -35,7 +35,7 @@ public class ActionHandlerRegistryTest {
         ActionHandler mockHandler = mock(ActionHandler.class);
         when(mockHandler.getEvent()).thenReturn("event");
         ActionHandlerRegistry.registerHandler(mockHandler);
-        Context context = new MockContext();
+        Context context = RuntimeEnvironment.systemContext;
         MessageModel mockModel = mock(MessageModel.class);
         try {
             ActionHandlerRegistry.dispatchEvent(context, "Other event", mockModel);
@@ -57,7 +57,7 @@ public class ActionHandlerRegistryTest {
         when(mockHandlerOther.getEvent()).thenReturn("event-other");
         ActionHandlerRegistry.registerHandler(mockHandlerOther);
 
-        Context context = new MockContext();
+        Context context = RuntimeEnvironment.systemContext;
 
         MessageModel mockModel = mock(MessageModel.class);
         ActionHandlerRegistry.dispatchEvent(context, "event-other", mockModel);

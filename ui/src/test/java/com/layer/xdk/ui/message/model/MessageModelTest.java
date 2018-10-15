@@ -7,7 +7,6 @@ import static junit.framework.Assert.fail;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.test.mock.MockContext;
 
 import com.google.gson.JsonObject;
 import com.layer.sdk.LayerClient;
@@ -20,10 +19,12 @@ import com.layer.xdk.test.common.stub.MessagePartStub;
 import com.layer.xdk.test.common.stub.MessageStub;
 import com.layer.xdk.ui.message.MessageMetadata;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 
 import java.util.HashSet;
 
@@ -32,7 +33,7 @@ public class MessageModelTest {
     private static LayerClientStub sLayerClientStub;
     private static IdentityStub sAlice;
     private static IdentityStub sBob;
-    private static Context sMockContext;
+    private Context mMockContext;
 
     @BeforeClass
     public static void setUpGlobal() {
@@ -40,7 +41,11 @@ public class MessageModelTest {
         sBob = new IdentityStub();
         sLayerClientStub = new LayerClientStub();
         sLayerClientStub.mAuthenticatedUser = sAlice;
-        sMockContext = new MockContext();
+    }
+
+    @Before
+    public void setUpContext() {
+        mMockContext = RuntimeEnvironment.systemContext;
     }
 
     @Test
@@ -50,7 +55,7 @@ public class MessageModelTest {
         messagePartStub.mMimeType = "text/plain";
 
         messageStub.mMessageParts.add(messagePartStub);
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         try {
             model.processPartsFromTreeRoot();
             fail("Expected IllegalArgumentException");
@@ -66,7 +71,7 @@ public class MessageModelTest {
         messagePartStub.mMimeType = "application/vnd.layer.text+json; role=root";
 
         messageStub.mMessageParts.add(messagePartStub);
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.processPartsFromTreeRoot();
 
         assertThat(model.getMimeTypeTree()).isEqualTo("application/vnd.layer.text+json[]");
@@ -79,7 +84,7 @@ public class MessageModelTest {
         messagePartStub.mMimeType = "text/plain";
 
         messageStub.mMessageParts.add(messagePartStub);
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub) {
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub) {
             @Override
             protected void processLegacyParts() {
 
@@ -93,14 +98,14 @@ public class MessageModelTest {
     @Test
     public void testHasMetadata_noMetadata() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         assertThat(model.getHasMetadata()).isFalse();
     }
 
     @Test
     public void testHasMetadata_withTitle() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.mTitle = "Title";
         assertThat(model.getHasMetadata()).isTrue();
     }
@@ -108,7 +113,7 @@ public class MessageModelTest {
     @Test
     public void testHasMetadata_withFooter() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.mFooter = "Footer";
         assertThat(model.getHasMetadata()).isTrue();
     }
@@ -116,7 +121,7 @@ public class MessageModelTest {
     @Test
     public void testHasMetadata_withDescription() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.mDescription = "Description";
         assertThat(model.getHasMetadata()).isTrue();
     }
@@ -124,7 +129,7 @@ public class MessageModelTest {
     @Test
     public void testNoAction() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         assertThat(model.getActionEvent()).isNull();
         assertThat(model.getActionData().size()).isEqualTo(0);
     }
@@ -132,7 +137,7 @@ public class MessageModelTest {
     @Test
     public void testActionOverride() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         Action action = new Action();
         action.setEvent("event");
         action.setData(new JsonObject());
@@ -144,7 +149,7 @@ public class MessageModelTest {
     @Test
     public void testActionMetadata() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         MessageMetadata metadata = new MessageMetadata();
         metadata.mAction = new Action();
         metadata.mAction.setEvent("event");
@@ -158,7 +163,7 @@ public class MessageModelTest {
     @Test
     public void testActionMetadataNoData() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         MessageMetadata metadata = new MessageMetadata();
         metadata.mAction = new Action();
         metadata.mAction.setEvent("event");
@@ -170,7 +175,7 @@ public class MessageModelTest {
     @Test
     public void testActionOverrideWithMetadata() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
 
         Action action = new Action();
         action.setEvent("override event");
@@ -190,7 +195,7 @@ public class MessageModelTest {
     @Test
     public void testActionDataOverridesMetadataActionData() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
 
         Action action = new Action();
         action.setData(new JsonObject());
@@ -209,7 +214,7 @@ public class MessageModelTest {
     @Test
     public void testDefaultActionEvent() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.setDefaultActionEvent("default");
         assertThat(model.getActionEvent()).isEqualTo("default");
     }
@@ -217,7 +222,7 @@ public class MessageModelTest {
     @Test
     public void testActionEventOverridesDefaultActionEvent() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.setDefaultActionEvent("default");
         Action action = new Action();
         action.setEvent("action override");
@@ -228,7 +233,7 @@ public class MessageModelTest {
     @Test
     public void testMetadataActionEventOverridesDefaultActionEvent() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.setDefaultActionEvent("default");
 
         MessageMetadata metadata = new MessageMetadata();
@@ -242,7 +247,7 @@ public class MessageModelTest {
     @Test
     public void testActionEventWithOnlyMetadataActionData() {
         MessageStub messageStub = createSimpleMessage();
-        TestMessageModel model = new TestMessageModel(sMockContext, sLayerClientStub, messageStub);
+        TestMessageModel model = new TestMessageModel(mMockContext, sLayerClientStub, messageStub);
         model.setDefaultActionEvent("default");
 
         Action action = new Action();

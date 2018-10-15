@@ -23,6 +23,9 @@ android {
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
+
     buildTypes {
         debug {
             // Only enable multidex for debug builds as test libraries pushes it over the limit
@@ -109,7 +112,7 @@ dependencies {
     testImplementation project(':xdk-test-common')
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:' + rootProject.ext.mockitoVersion
-    testImplementation 'org.robolectric:robolectric:3.8'
+    testImplementation 'org.robolectric:robolectric:4.0-beta-1'
     androidTestImplementation project(':xdk-test-common')
     androidTestImplementation 'org.mockito:mockito-core:' + rootProject.ext.mockitoVersion
     androidTestImplementation 'org.mockito:mockito-android:' + rootProject.ext.mockitoVersion

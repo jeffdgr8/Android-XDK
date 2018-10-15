@@ -3,7 +3,6 @@ package com.layer.xdk.ui.message.adapter;
 import static com.google.common.truth.Truth.assertThat;
 
 import android.content.Context;
-import android.test.mock.MockContext;
 
 import com.layer.sdk.messaging.Conversation;
 import com.layer.sdk.messaging.Message;
@@ -17,25 +16,28 @@ import com.layer.xdk.ui.message.text.TextMessageModel;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+@RunWith(RobolectricTestRunner.class)
 public class GroupingCalculatorTest {
 
     private static LayerClientStub sLayerClientStub;
-    private static Context sContext;
     private static IdentityStub sAlice;
     private static IdentityStub sBob;
     private static IdentityStub sCarl;
+    private Context mContext;
     private ConversationStub mConversationStub;
     private GroupingCalculator mGroupingCalculator;
 
     @BeforeClass
     public static void setUpGlobal() {
-        sContext = new MockContext();
         sAlice = new IdentityStub();
         sBob = new IdentityStub();
         sCarl = new IdentityStub();
@@ -45,6 +47,7 @@ public class GroupingCalculatorTest {
 
     @Before
     public void setUp() {
+        mContext = RuntimeEnvironment.systemContext;
         mConversationStub = new ConversationStub();
         mConversationStub.mParticipants = new HashSet<>(3);
         mConversationStub.mParticipants.add(sAlice);
@@ -191,7 +194,7 @@ public class GroupingCalculatorTest {
 
 
     private MessageModel createMessageModel(Message message) {
-        return new TextMessageModel(sContext, sLayerClientStub, message);
+        return new TextMessageModel(mContext, sLayerClientStub, message);
     }
 
     private List<MessageModel> createMessageModels(Message... messages) {
