@@ -3,7 +3,8 @@
 ##
 
 ### Bug fixes
-  * Fixing crash when viewing a message list during a bulk deletion (AND-1457) 
+  * Fixing crash when viewing a message list during a bulk deletion (AND-1457)
+  * Fixing read receipt alignment when sender avatar is used (AND-1532)
   
 ## 4.0.8
 

@@ -155,7 +155,7 @@
             android:textSize="@dimen/xdk_ui_text_size_status"
             android:visibility="@{viewHolderModel.readReceiptVisible ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/message_view_stub"
             tools:text="Read by 1 participant"
             tools:visibility="visible"/>
 
