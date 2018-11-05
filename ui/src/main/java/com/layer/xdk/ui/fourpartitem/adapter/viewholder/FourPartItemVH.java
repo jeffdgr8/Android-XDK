@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.fourpartitem.adapter.viewholder;
 
-import android.support.annotation.CallSuper;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.CallSuper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.layer.xdk.ui.databinding.XdkUiFourPartItemBinding;
 import com.layer.xdk.ui.fourpartitem.FourPartItemStyle;

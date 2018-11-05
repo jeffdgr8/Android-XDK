@@ -3,8 +3,8 @@ package com.layer.xdk.ui.message.image.cache;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import android.widget.ImageView;
 
 import com.layer.xdk.ui.util.Log;

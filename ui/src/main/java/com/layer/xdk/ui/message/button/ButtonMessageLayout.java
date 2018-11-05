@@ -1,12 +1,12 @@
 package com.layer.xdk.ui.message.button;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.databinding.Observable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.AppCompatButton;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.Observable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;

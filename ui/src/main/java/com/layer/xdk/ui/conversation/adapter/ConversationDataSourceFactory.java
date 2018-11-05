@@ -1,8 +1,8 @@
 package com.layer.xdk.ui.conversation.adapter;
 
 
-import android.arch.paging.DataSource;
-import android.support.annotation.Nullable;
+import androidx.paging.DataSource;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.query.Predicate;

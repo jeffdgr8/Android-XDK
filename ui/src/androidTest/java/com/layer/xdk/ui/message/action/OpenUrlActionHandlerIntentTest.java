@@ -3,9 +3,9 @@ package com.layer.xdk.ui.message.action;
 import static junit.framework.Assert.fail;
 
 import android.content.ActivityNotFoundException;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.MediumTest;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.filters.MediumTest;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.google.gson.JsonObject;
 import com.layer.xdk.ui.mock.MockLayerClient;

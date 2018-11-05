@@ -2,7 +2,7 @@ package com.layer.xdk.ui.message.choice;
 
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 
 import com.layer.xdk.ui.R;

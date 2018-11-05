@@ -1,8 +1,8 @@
 package com.layer.xdk.ui.conversation.adapter;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.messaging.Conversation;
 import com.layer.sdk.messaging.Identity;
@@ -92,7 +92,7 @@ public class ConversationItemModel {
     /**
      * Perform an equals check on select properties.
      *
-     * This is primarily used for calculations with {@link android.support.v7.util.DiffUtil}.
+     * This is primarily used for calculations with {@link androidx.recyclerview.widget.DiffUtil}.
      *
      * @param other model to compare to
      * @return true if all properties are equal

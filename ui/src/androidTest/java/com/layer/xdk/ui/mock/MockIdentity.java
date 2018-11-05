@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.mock;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.layer.sdk.messaging.Identity;
 import com.layer.sdk.messaging.Metadata;

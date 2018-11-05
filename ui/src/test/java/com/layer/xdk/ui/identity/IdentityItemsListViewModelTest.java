@@ -5,7 +5,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import android.databinding.Observable;
+import androidx.databinding.Observable;
 
 import com.layer.xdk.ui.identity.adapter.IdentityDataSourceFactory;
 import com.layer.xdk.ui.identity.adapter.IdentityItemModel;

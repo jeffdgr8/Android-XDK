@@ -5,19 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.annotation.Dimension;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.Px;
-import android.support.media.ExifInterface;
+import androidx.annotation.Dimension;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.Px;
+import androidx.exifinterface.media.ExifInterface;
 
 import java.io.IOException;
 
 import static android.content.ContentResolver.SCHEME_CONTENT;
 import static android.content.ContentResolver.SCHEME_FILE;
-import static android.support.media.ExifInterface.ORIENTATION_NORMAL;
-import static android.support.media.ExifInterface.TAG_ORIENTATION;
+import static androidx.exifinterface.media.ExifInterface.ORIENTATION_NORMAL;
+import static androidx.exifinterface.media.ExifInterface.TAG_ORIENTATION;
 
 public class ImageRequestParameters {
 

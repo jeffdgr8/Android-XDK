@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.message.action;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.gson.JsonObject;
 import com.layer.xdk.ui.message.choice.ChoiceMetadata;

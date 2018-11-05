@@ -2,13 +2,13 @@ package com.layer.xdk.ui.message.file;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.databinding.Bindable;
+import androidx.databinding.Bindable;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import android.text.TextUtils;
 
 import com.google.gson.JsonObject;

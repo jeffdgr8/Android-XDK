@@ -1,9 +1,9 @@
 package com.layer.xdk.ui;
 
 import android.os.Bundle;
-import android.support.multidex.MultiDex;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnitRunner;
+import androidx.multidex.MultiDex;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnitRunner;
 
 import com.linkedin.android.testbutler.TestButler;
 

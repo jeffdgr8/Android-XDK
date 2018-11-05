@@ -26,7 +26,7 @@
         android:transitionName="image"
         />
 
-    <android.support.v4.widget.ContentLoadingProgressBar
+    <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/image_popup_progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"

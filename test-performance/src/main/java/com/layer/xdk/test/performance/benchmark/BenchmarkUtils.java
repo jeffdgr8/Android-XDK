@@ -2,7 +2,7 @@ package com.layer.xdk.test.performance.benchmark;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.exceptions.LayerException;

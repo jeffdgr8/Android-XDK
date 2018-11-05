@@ -1,13 +1,13 @@
 package com.layer.xdk.ui.fourpartitem.adapter;
 
-import android.arch.paging.PagedListAdapter;
+import androidx.paging.PagedListAdapter;
 import android.content.Context;
-import android.databinding.OnRebindCallback;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.OnRebindCallback;
+import androidx.databinding.ViewDataBinding;
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 
 import com.layer.sdk.LayerClient;

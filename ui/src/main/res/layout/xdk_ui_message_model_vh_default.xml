@@ -27,7 +27,7 @@
             type="com.layer.xdk.ui.message.adapter.viewholder.DefaultMessageModelVHModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -159,5 +159,5 @@
             tools:text="Read by 1 participant"
             tools:visibility="visible"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

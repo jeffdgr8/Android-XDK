@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.OpenableColumns;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.webkit.MimeTypeMap;
 
 import com.google.gson.Gson;

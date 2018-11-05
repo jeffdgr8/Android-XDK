@@ -1,8 +1,8 @@
 package com.layer.xdk.ui.conversation;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-import android.support.annotation.NonNull;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.annotation.NonNull;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Conversation;

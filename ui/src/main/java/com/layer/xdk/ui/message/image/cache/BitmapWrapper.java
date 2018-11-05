@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.message.image.cache;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.UUID;
 

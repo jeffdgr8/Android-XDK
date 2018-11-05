@@ -1,6 +1,6 @@
 package com.layer.xdk.test.performance.benchmark;
 
-import android.support.test.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
 
 import com.layer.xdk.ui.DefaultXdkUiComponent;
 import com.layer.xdk.ui.ServiceLocator;

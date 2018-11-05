@@ -5,8 +5,8 @@ import static com.google.common.truth.Truth.assertThat;
 import static junit.framework.Assert.fail;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.test.mock.MockContext;
 
 import com.layer.sdk.LayerClient;

@@ -1,8 +1,8 @@
 package com.layer.xdk.ui.conversation;
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
-import android.support.constraint.ConstraintLayout;
+import androidx.databinding.BindingAdapter;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 

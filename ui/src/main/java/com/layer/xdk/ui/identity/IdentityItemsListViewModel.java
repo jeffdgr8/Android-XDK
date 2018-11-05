@@ -1,13 +1,13 @@
 package com.layer.xdk.ui.identity;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.paging.LivePagedListBuilder;
-import android.arch.paging.PagedList;
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.messaging.Identity;
 import com.layer.sdk.query.Predicate;

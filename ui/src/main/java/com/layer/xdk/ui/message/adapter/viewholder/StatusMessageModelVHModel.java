@@ -2,11 +2,10 @@ package com.layer.xdk.ui.message.adapter.viewholder;
 
 
 import android.content.Context;
-import android.databinding.Bindable;
+import androidx.databinding.Bindable;
 
 import com.layer.sdk.LayerClient;
 import com.layer.xdk.ui.identity.IdentityFormatter;
-import com.layer.xdk.ui.message.model.MessageModel;
 import com.layer.xdk.ui.message.response.ResponseMessageModel;
 import com.layer.xdk.ui.message.status.StatusMessageModel;
 import com.layer.xdk.ui.util.DateFormatter;

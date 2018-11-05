@@ -1,6 +1,6 @@
 package com.layer.xdk.ui.message.image;
 
-import android.support.annotation.Dimension;
+import androidx.annotation.Dimension;
 
 import com.google.gson.annotations.SerializedName;
 import com.layer.xdk.ui.message.model.Action;

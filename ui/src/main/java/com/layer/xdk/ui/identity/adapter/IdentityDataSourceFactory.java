@@ -1,9 +1,9 @@
 package com.layer.xdk.ui.identity.adapter;
 
 
-import android.arch.paging.DataSource;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.paging.DataSource;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Identity;

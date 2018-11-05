@@ -2,7 +2,7 @@ package com.layer.xdk.test.common.stub;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.listeners.LayerProgressListener;
 import com.layer.sdk.messaging.Message;

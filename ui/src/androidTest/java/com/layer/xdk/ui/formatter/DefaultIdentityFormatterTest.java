@@ -3,9 +3,9 @@ package com.layer.xdk.ui.formatter;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.MediumTest;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.filters.MediumTest;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.layer.sdk.messaging.Identity;
 import com.layer.xdk.ui.identity.DefaultIdentityFormatter;

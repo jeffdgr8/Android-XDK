@@ -1,9 +1,9 @@
 package com.layer.xdk.ui.conversation.adapter;
 
 
-import android.arch.paging.PositionalDataSource;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.paging.PositionalDataSource;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.changes.LayerChange;
@@ -24,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Creates a {@link android.arch.paging.DataSource} to use with the paging library that loads
+ * Creates a {@link androidx.paging.DataSource} to use with the paging library that loads
  * Conversations from a {@link LayerClient}. This will convert them to {@link ConversationItemModel}
  * objects before returning, performing some additional loads into memory to speed up item binding
  * with a recycler view.
@@ -45,7 +45,7 @@ public class ConversationDataSource extends PositionalDataSource<ConversationIte
     private int mInitialHistory = 0;
 
     /**
-     * Create a {@link android.arch.paging.DataSource} and registers a listener with the
+     * Create a {@link androidx.paging.DataSource} and registers a listener with the
      * {@link LayerClient} to listen for relevant change notifications to invalidate if necessary.
      *
      * @param layerClient client to use for the query

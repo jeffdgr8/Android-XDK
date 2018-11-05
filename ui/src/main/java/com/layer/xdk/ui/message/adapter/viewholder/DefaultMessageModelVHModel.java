@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.message.adapter.viewholder;
 
 import android.content.Context;
-import android.databinding.Bindable;
+import androidx.databinding.Bindable;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.Spanned;

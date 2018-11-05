@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.media.ExifInterface;
+import androidx.annotation.NonNull;
+import androidx.exifinterface.media.ExifInterface;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

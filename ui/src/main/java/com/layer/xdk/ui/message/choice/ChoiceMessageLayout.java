@@ -1,11 +1,11 @@
 package com.layer.xdk.ui.message.choice;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.databinding.Observable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.Observable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v7.content.res.AppCompatResources;
+import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;

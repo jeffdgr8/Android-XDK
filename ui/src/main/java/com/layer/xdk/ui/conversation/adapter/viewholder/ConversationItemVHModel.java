@@ -1,6 +1,6 @@
 package com.layer.xdk.ui.conversation.adapter.viewholder;
 
-import android.databinding.Bindable;
+import androidx.databinding.Bindable;
 
 import com.layer.sdk.messaging.Identity;
 import com.layer.xdk.ui.conversation.ConversationItemFormatter;

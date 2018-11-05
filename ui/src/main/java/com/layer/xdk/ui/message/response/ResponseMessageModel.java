@@ -2,8 +2,8 @@ package com.layer.xdk.ui.message.response;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Message;

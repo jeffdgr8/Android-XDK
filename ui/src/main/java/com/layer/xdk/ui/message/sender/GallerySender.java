@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.MainThread;
+import androidx.annotation.MainThread;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Identity;

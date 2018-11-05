@@ -34,7 +34,7 @@
             type="com.layer.xdk.ui.fourpartitem.adapter.viewholder.FourPartItemVHModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="@{style.itemHeight, default=wrap_content}"
@@ -136,5 +136,5 @@
             app:typeface="@{viewHolderModel.secondaryState ? style.subtitleUnreadTextTypeface : style.subtitleTextTypeface}"
             tools:text="Subtitle" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

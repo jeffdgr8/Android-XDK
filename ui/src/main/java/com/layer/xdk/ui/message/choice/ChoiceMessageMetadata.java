@@ -1,6 +1,6 @@
 package com.layer.xdk.ui.message.choice;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;

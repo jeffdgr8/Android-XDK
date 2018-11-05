@@ -1,10 +1,10 @@
 package com.layer.xdk.ui.message.choice;
 
 import android.content.Context;
-import android.databinding.Bindable;
+import androidx.databinding.Bindable;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.gson.stream.JsonReader;
 import com.layer.sdk.LayerClient;

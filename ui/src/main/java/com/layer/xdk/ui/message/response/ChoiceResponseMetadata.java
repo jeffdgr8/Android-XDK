@@ -2,7 +2,7 @@ package com.layer.xdk.ui.message.response;
 
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.layer.xdk.ui.message.response.crdt.OrOperationResult;
 

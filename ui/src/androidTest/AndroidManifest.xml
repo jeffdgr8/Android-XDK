@@ -9,7 +9,7 @@
 
     <application
         android:theme="@style/Theme.XdkUi.Base.Light"
-        android:name="android.support.multidex.MultiDexApplication">
+        android:name="androidx.multidex.MultiDexApplication">
 
         <activity
             android:name="com.layer.xdk.ui.testactivity.AvatarActivityTestView">

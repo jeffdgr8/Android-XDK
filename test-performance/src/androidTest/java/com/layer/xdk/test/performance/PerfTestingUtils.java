@@ -19,7 +19,7 @@ package com.layer.xdk.test.performance;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Environment;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
 import android.util.Log;
 
 import java.io.File;

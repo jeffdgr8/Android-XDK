@@ -1,9 +1,9 @@
 package com.layer.xdk.ui.message.receipt;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
+import androidx.databinding.DataBindingUtil;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;

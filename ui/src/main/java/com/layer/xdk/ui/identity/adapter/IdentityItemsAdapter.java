@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.identity.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import android.view.ViewGroup;
 
 import com.layer.sdk.LayerClient;

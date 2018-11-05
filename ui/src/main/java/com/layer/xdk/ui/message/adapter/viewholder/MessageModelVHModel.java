@@ -1,8 +1,8 @@
 package com.layer.xdk.ui.message.adapter.viewholder;
 
 import android.content.Context;
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 import android.view.View;
 
 import com.layer.sdk.LayerClient;

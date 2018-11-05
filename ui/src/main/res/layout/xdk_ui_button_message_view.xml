@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:messageModel="@{messageModel}"
-        tools:parentTag="android.support.constraint.ConstraintLayout">
+        tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
         <ViewStub
             android:id="@+id/xdk_ui_button_message_view_content"

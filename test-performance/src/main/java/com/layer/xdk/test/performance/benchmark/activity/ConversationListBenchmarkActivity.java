@@ -3,9 +3,9 @@ package com.layer.xdk.test.performance.benchmark.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.test.espresso.idling.CountingIdlingResource;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.test.espresso.idling.CountingIdlingResource;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.exceptions.LayerException;

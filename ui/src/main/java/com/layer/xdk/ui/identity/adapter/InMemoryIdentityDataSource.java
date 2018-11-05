@@ -1,8 +1,8 @@
 package com.layer.xdk.ui.identity.adapter;
 
 
-import android.arch.paging.PositionalDataSource;
-import android.support.annotation.NonNull;
+import androidx.paging.PositionalDataSource;
+import androidx.annotation.NonNull;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.changes.LayerChange;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Creates a {@link android.arch.paging.DataSource} to use with the paging library that loads
+ * Creates a {@link androidx.paging.DataSource} to use with the paging library that loads
  * Identities from an in-memory list. This will convert them to {@link IdentityItemModel}
  * objects before returning.
  */
@@ -27,7 +27,7 @@ public class InMemoryIdentityDataSource extends PositionalDataSource<IdentityIte
     private final List<Identity> mIdentities;
 
     /**
-     * Create a {@link android.arch.paging.DataSource} and registers a listener with the
+     * Create a {@link androidx.paging.DataSource} and registers a listener with the
      * {@link LayerClient} to listen for relevant change notifications to invalidate if necessary.
      *
      * @param layerClient client to use to listen for changes

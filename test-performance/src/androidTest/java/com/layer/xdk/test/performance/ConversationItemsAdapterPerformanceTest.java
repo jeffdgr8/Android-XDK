@@ -1,17 +1,17 @@
 package com.layer.xdk.test.performance;
 
 import android.Manifest;
-import android.arch.core.executor.ArchTaskExecutor;
-import android.arch.paging.PagedList;
-import android.arch.paging.PositionalDataSource;
-import android.support.annotation.NonNull;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.LargeTest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.rule.GrantPermissionRule;
-import android.support.test.runner.AndroidJUnit4;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.arch.core.executor.ArchTaskExecutor;
+import androidx.paging.PagedList;
+import androidx.paging.PositionalDataSource;
+import androidx.annotation.NonNull;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
+import androidx.test.runner.AndroidJUnit4;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.layer.sdk.messaging.MessagePart;
 import com.layer.xdk.test.common.stub.ConversationStub;

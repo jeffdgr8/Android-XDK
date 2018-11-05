@@ -1,6 +1,6 @@
 package com.layer.xdk.ui.message.location;
 
-import static android.support.v4.content.ContextCompat.checkSelfPermission;
+import static androidx.core.content.ContextCompat.checkSelfPermission;
 
 import android.Manifest;
 import android.app.Activity;
@@ -9,10 +9,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresPermission;
-import android.support.annotation.StringRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
+import androidx.annotation.StringRes;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;

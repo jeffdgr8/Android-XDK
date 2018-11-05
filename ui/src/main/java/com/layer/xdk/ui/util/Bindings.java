@@ -1,9 +1,9 @@
 package com.layer.xdk.ui.util;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.graphics.Typeface;
-import android.support.annotation.DrawableRes;
-import android.support.constraint.ConstraintLayout;
+import androidx.annotation.DrawableRes;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;

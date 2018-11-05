@@ -4,7 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.layer.xdk.ui.conversation.ConversationItemsListView;
 import com.layer.xdk.ui.conversation.adapter.ConversationItemsAdapter;

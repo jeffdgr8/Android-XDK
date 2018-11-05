@@ -1,7 +1,7 @@
 package com.layer.xdk.test.common.stub;
 
 import android.net.Uri;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.layer.sdk.LayerClient;
 import com.layer.sdk.messaging.Conversation;

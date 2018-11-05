@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath group: 'com.layer', name: 'gradle-git-repo-plugin', version: '2.0.2'
     }
 }
@@ -27,8 +27,8 @@ allprojects {
 
 ext {
     minSdkVersion = 14
-    targetSdkVersion = 27
-    compileSdkVersion = 27
+    targetSdkVersion = 28
+    compileSdkVersion = 28
 
     supportLibVersion = "27.1.0"
     espressoVersion = "3.0.1"

@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.fourpartitem.adapter.viewholder;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 import android.view.View;
 
 import com.layer.sdk.messaging.Identity;

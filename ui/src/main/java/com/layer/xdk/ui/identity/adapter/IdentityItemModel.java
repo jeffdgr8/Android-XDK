@@ -1,7 +1,7 @@
 package com.layer.xdk.ui.identity.adapter;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.layer.sdk.messaging.Identity;
 import com.layer.sdk.messaging.Metadata;
@@ -63,7 +63,7 @@ public class IdentityItemModel {
     /**
      * Perform an equals check on all properties.
      *
-     * This is primarily used for calculations with {@link android.support.v7.util.DiffUtil}.
+     * This is primarily used for calculations with {@link androidx.recyclerview.widget.DiffUtil}.
      *
      * @param other model to compare to
      * @return true if all properties are equal

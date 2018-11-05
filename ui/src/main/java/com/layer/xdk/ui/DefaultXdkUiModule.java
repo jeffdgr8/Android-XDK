@@ -1,7 +1,7 @@
 package com.layer.xdk.ui;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.layer.sdk.LayerClient;
 import com.layer.xdk.ui.conversation.ConversationItemFormatter;

@@ -2,14 +2,14 @@ package com.layer.xdk.ui.message.model;
 
 
 import android.content.Context;
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 import android.net.Uri;
-import android.support.annotation.CallSuper;
-import android.support.annotation.ColorRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.CallSuper;
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -823,7 +823,7 @@ public abstract class MessageModel extends BaseObservable {
      * Perform an equals check on most properties. Child model equality is checked but parent
      * models are skipped as this will produce infinite recursion.
      * <p>
-     * This is primarily used for calculations with {@link android.support.v7.util.DiffUtil}.
+     * This is primarily used for calculations with {@link androidx.recyclerview.widget.DiffUtil}.
      *
      * @param other model to compare to
      * @return true if all properties are equal
