@@ -1,11 +1,25 @@
 # Android XDK
 
-##
+## 4.1.0-pre2
+
+### Features
+  * Supporting single avatar placeholder (AND-1122)
+  * Adding feedback comment character limit UI (AND-1492)
+  * Using message models directly instead of custom formed JSON for action handling (AND-1478)
+  * Updated tools to `3.2.0` and targeting API `28`
+  * Updated Layer SDK to `4.1.0-pre2`
 
 ### Bug fixes
   * Fixing crash when viewing a message list during a bulk deletion (AND-1457)
+  * Fixing crash when seeking audio before media player is prepared (AND-1477)
+  * Fixing missing message title icon (AND-1490)
+  * Matching metadata sorting across platforms (AND-1511)
+  * Allowing containers to handle click events (AND-1512)
+  * Supporting action data override with a null event (AND-1514)
+  * Better matching of image cropping across platforms (AND-1519)
   * Fixing read receipt alignment when sender avatar is used (AND-1532)
-  
+  * Feedback/Audio/Video message UI tweaks
+
 ## 4.0.9
 
 ### Features
