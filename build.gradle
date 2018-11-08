@@ -17,6 +17,7 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven { url "https://maven.google.com" }
         maven { url "https://raw.githubusercontent.com/layerhq/releases-android/master/releases/" }
         if (preReleaseRepoUrl != null) {
             println "Using Pre-release repository: " + preReleaseRepoUrl
