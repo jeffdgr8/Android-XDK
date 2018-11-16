@@ -30,13 +30,19 @@ ext {
     targetSdkVersion = 28
     compileSdkVersion = 28
 
-    supportLibVersion = "27.1.0"
-    espressoVersion = "3.0.1"
-    runnerVersion = "1.0.2-alpha1"
-    rulesVersion = "1.0.2-alpha1"
+    espressoVersion = "3.1.0"
+    runnerVersion = "1.1.0"
+    rulesVersion = "1.1.0"
     truthVersion = "0.39"
     multidexVersion = "1.0.3"
-    daggerVersion = "2.15"
+    daggerVersion = "2.17"
     layerSdkVersion = "4.0.9"
-    mockitoVersion = "2.8.47"
+    mockitoVersion = "2.23.0"
+	
+	
+	legacySupportCoreUtils = "1.0.0"
+	xAppcompat = "1.0.2"
+	xMaterial = "1.1.0-alpha01"
+	xExifinterface = "1.0.0"  
+	xMultidex = "2.0.0"
 }
