@@ -32,7 +32,7 @@ public abstract class FourPartItemsListView<ADAPTER extends FourPartItemRecycler
         inflate(getContext(), R.layout.xdk_ui_four_part_items_list, this);
         mItemsRecyclerView = findViewById(R.id.xdk_ui_items_recycler);
 
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         manager.setStackFromEnd(false);
         mItemsRecyclerView.setLayoutManager(manager);
 
