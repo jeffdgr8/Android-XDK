@@ -7,6 +7,9 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -14,4 +17,5 @@ dependencies {
         exclude group: 'com.google.firebase', module: 'firebase-messaging'
         exclude group: 'com.google.firebase', module: 'firebase-core'
     }
+    implementation 'androidx.annotation:annotation:1.0.1'
 }

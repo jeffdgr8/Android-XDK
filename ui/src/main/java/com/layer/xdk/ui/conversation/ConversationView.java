@@ -47,7 +47,7 @@ public class ConversationView extends ConstraintLayout {
         setTypingIndicatorLayout(typingIndicator);
     }
 
-    @BindingAdapter(value = {"app:conversation", "app:layerClient", "app:messageItemsListViewModel"})
+    @BindingAdapter(value = {"conversation", "layerClient", "messageItemsListViewModel"})
     public static void setConversation(ConversationView view, Conversation conversation,
                                        LayerClient layerClient, MessageItemsListViewModel viewModel) {
         view.mBinding.setViewModel(viewModel);

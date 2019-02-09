@@ -14,7 +14,7 @@ import com.layer.xdk.ui.message.image.cache.ImageRequestParameters;
 
 public class Bindings {
 
-    @BindingAdapter({"bind:typeface"})
+    @BindingAdapter({"typeface"})
     public static void setTypeface(TextView textView, Typeface typeface) {
         textView.setTypeface(typeface);
     }
@@ -59,14 +59,14 @@ public class Bindings {
         view.setLayoutParams(layoutParams);
     }
 
-    @BindingAdapter("app:layout_constraintVertical_bias")
+    @BindingAdapter("layout_constraintVertical_bias")
     public static void setVerticalBias(View view, float bias) {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) view.getLayoutParams();
         params.verticalBias = bias;
 
     }
 
-    @BindingAdapter({"app:loadFrom", "app:usingImageLoader"})
+    @BindingAdapter({"loadFrom", "usingImageLoader"})
     public static void loadFrom(ImageView imageView, ImageRequestParameters parameters, ImageCacheWrapper imageCacheWrapper) {
         if (imageCacheWrapper == null) {
             // No model is set yet
@@ -79,12 +79,12 @@ public class Bindings {
         }
     }
 
-    @BindingAdapter("app:visibleOrGone")
+    @BindingAdapter("visibleOrGone")
     public static void visibleOrGone(View view, boolean visible) {
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
-    @BindingAdapter("app:imageResource")
+    @BindingAdapter("imageResource")
     public static void imageResource(ImageView imageView, @DrawableRes int resource) {
         imageView.setImageResource(resource);
     }
