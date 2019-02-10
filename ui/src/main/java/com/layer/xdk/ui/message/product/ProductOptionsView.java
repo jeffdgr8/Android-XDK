@@ -35,7 +35,7 @@ public class ProductOptionsView extends LinearLayout {
         return mOptions;
     }
 
-    @BindingAdapter("setOptions")
+    @BindingAdapter("app:setOptions")
     public static void setOptions(ProductOptionsView view, @NonNull List<ChoiceMessageModel> options) {
         view.mOptions = options;
         view.renderOptions();
