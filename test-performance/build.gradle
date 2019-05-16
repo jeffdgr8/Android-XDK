@@ -36,24 +36,24 @@ android {
 
     // Data binding is still trying to use 25.2.0 for some reason
     configurations.all {
-        resolutionStrategy.force 'com.android.support:support-v4:' + rootProject.ext.supportLibVersion
+        resolutionStrategy.force 'androidx.legacy:legacy-support-v4:1.0.0'
     }
 }
 
 dependencies {
     implementation project(':xdk-ui')
-    implementation 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
-    implementation 'com.android.support.test.espresso:espresso-core:' + rootProject.ext.espressoVersion
-    implementation 'com.android.support:multidex:' + rootProject.ext.multidexVersion
+    implementation 'androidx.test:rules:' + rootProject.ext.rulesVersion
+    implementation 'androidx.test.espresso:espresso-core:' + rootProject.ext.espressoVersion
+    implementation 'androidx.multidex:multidex:' + rootProject.ext.xMultidex
 
     androidTestImplementation project(':xdk-test-common')
-    androidTestImplementation 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
-    androidTestImplementation 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
+    androidTestImplementation 'androidx.test:runner:' + rootProject.ext.runnerVersion
+    androidTestImplementation 'androidx.test:rules:' + rootProject.ext.rulesVersion
     androidTestImplementation 'org.mockito:mockito-core:' + rootProject.ext.mockitoVersion
 
-    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:' + rootProject.ext.espressoVersion
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:' + rootProject.ext.espressoVersion, {
-        exclude group: 'com.android.support', module: 'support-annotations'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:' + rootProject.ext.espressoVersion
+    androidTestImplementation('androidx.test.espresso:espresso-core:' + rootProject.ext.espressoVersion, {
+        exclude group: 'androidx.annotation', module: 'annotation'
     })
     androidTestImplementation 'com.google.truth:truth:' + rootProject.ext.truthVersion
 
