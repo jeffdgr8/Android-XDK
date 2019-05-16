@@ -106,7 +106,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:' + rootProject.ext.mockitoVersion
     testImplementation 'org.robolectric:robolectric:4.1'
-
     androidTestImplementation project(':xdk-test-common')
     androidTestImplementation 'org.mockito:mockito-core:' + rootProject.ext.mockitoVersion
     androidTestImplementation 'androidx.test:runner:' + rootProject.ext.runnerVersion
